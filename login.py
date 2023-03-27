@@ -15,8 +15,8 @@ def signup():
     return jsonify({'result': 'success'})
 
 
-@app.route('/api/login', methods=['POST'])
-def api_login():
+@app.route('/login', methods=['POST'])
+def login():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
 
