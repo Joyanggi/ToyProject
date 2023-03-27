@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
+from login import bp
 app = Flask(__name__)
+app.register_blueprint(bp)
 
 from pymongo import MongoClient
 import certifi
