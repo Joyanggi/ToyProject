@@ -44,10 +44,10 @@
         }
     </style>
     <script>
-        function register() {
+        function join() {
             $.ajax({
                 type: "POST",
-                url: "/login",
+                url: "/join",
                 data: {
                     id_give: $('#userid').val(),
                     pw_give: $('#userpw').val()
@@ -57,7 +57,7 @@
                         alert('회원가입이 완료되었습니다.')
                         window.location.href = '/login'
                     } else {
-                        window.location.reload // 아이디가 이미 DB에 존재하는 경우 처리
+                        window.location.reload() // 아이디가 이미 DB에 존재하는 경우 처리
                     }
                 }
             })
@@ -113,7 +113,7 @@
         </div>
         <div class="row">
             <div class="col" style="margin:25px 50px 10px 50px">
-                <button type="button" class="btn btn-dark" style="width: 100%;">가입하기</button>
+                <button type="button" class="btn btn-dark" style="width: 100%;" onclick="join()">가입하기</button>
             </div>
         </div>
     </div>
