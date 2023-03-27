@@ -56,7 +56,7 @@
         function login() {
             $.ajax({
                 type: "POST",
-                url: "/login",
+                url: "/signin",
                 data: { id_give: $('#userid').val(), pw_give: $('#userpw').val() },
                 success: function (response) {
                     if (response['result'] == 'success') {

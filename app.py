@@ -31,17 +31,17 @@ import hashlib
 def home():
     return render_template('index.html')
 
-@app.route('/join')
+@app.route('/signup')
 def signuppage():
     # msg = request.args.get("msg")
     return render_template('signup.html')
 
-@app.route('/login')
+@app.route('/signin')
 def signinpage():
     # msg = request.args.get("msg")
     return render_template('signin.html')
 
-@app.route('/join', methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def signup():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give'] 
@@ -53,7 +53,7 @@ def signup():
     return jsonify({'result': 'success'})
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/signin', methods=['POST'])
 def signin():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give']
