@@ -39,11 +39,12 @@
         .right{
             background-color: blueviolet;
             border: 1px solid black;
+            height: 1000px;
         }
         .imgbox{
             background-color: blanchedalmond;
-            height: 400px;
-            width: 400px;
+            height: 300px;
+            width: 300px;
             
         }
         /* .innerRow{
@@ -52,7 +53,7 @@
         .inner{
             border: 1px solid black;
             width: 80%;
-            height: 500px;
+            height: 450px;
             margin-left: 30px;
             margin: 0 auto;
         }
@@ -68,12 +69,55 @@
             margin: 0 auto;
             margin-top: 40px;
         }
+        .profileImg > img{
+            width: 100%;
+            height: 100%;
+            object-fit: corver;
+            overflow: hidden;
+        }
         .profile{
             border: 1px solid black;
-            width: 70%;
+            width: 100%;
             height: 300px;
             margin: 0 auto;
             margin-top: 40px;
+        }
+        .detailProfile{
+            margin-top: 50px;
+        }
+        .addImgBtn{
+            text-align: center;
+        }
+        .addImgBtn > button{
+            width: 300px;
+            margin-top: 20px;
+        }
+        .addProfileBtn {
+            margin-top: 20px;
+        }
+        .editBtn{
+            margin-top: 20px;
+            text-align: right;
+        }
+        .visitBtn{
+            text-align: right;
+            width: 80%;
+            background-color: yellowgreen;
+            margin: 0 auto;
+        }
+        .visitBtn > button{
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        /* .commentRow{
+            width: 80%;
+            margin: 0 auto;
+        } */
+        .comment{
+            border: 1px solid black;
+            width: 80%;
+            margin: 0 auto;
+            background-color: violet;
         }
     </style>
 </head>
@@ -83,8 +127,8 @@
             <img src="/static/images/IMG_7217.png">
         </div>
         <div class="col-6 btn">
-            <button type="button" class="btn btn-primary">Primary</button>
-            <button type="button" class="btn btn-primary">Primary</button>
+            <button type="button" class="btn btn-primary">회원가입</button>
+            <button type="button" class="btn btn-primary">로그인</button>
         </div>
     </div>
     <div class="row" id="container">
@@ -92,19 +136,89 @@
             <div class="row innerRow">
                 <div class="col-12 inner">
                     <div class="row">
-                        <div class="col-3 ">
+                        <div class="col-xxl-4 col-12">
                             <div class-="row">
                                 <div class="col-12 profileImg">
-
+                                    <img src="/static/images/467704_392166_1110.jpg">
+                                </div>
+                                <div class="col-12 addImgBtn">
+                                    <button type="button" class="btn btn-primary" style="text-align: center;">이미지 업로드</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-9">
+                        <div class="col-xxl-8 col-12">
                             <div class-="row">
                                 <div class="col-12 profile">
-
+                                    <div class="row detailProfile">
+                                        <div class="col-2" style="text-align: right;">
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                name |
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                field |
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                github |
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                blog |
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                mbti |
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                한 줄 소개 |
+                                            </div>
+                                        </div>
+                                        <div class="col-10">
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                get name
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                get field
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                get github
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                get blog
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                get mbit
+                                            </div>
+                                            <div class="col-12" style="margin-top: 5px;">
+                                                한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6 addProfileBtn">
+                                        <button type="button" class="btn btn-primary" style="text-align: center;">인스타그램</button>
+                                        <button type="button" class="btn btn-primary" style="text-align: center;">페이스북</button>
+                                    </div>
+                                    <div class="col-6 editBtn">
+                                        <button type="button" class="btn btn-primary" style="text-align: center;">등록 / 수정하기</button>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 visitBtn">
+                    <button type="button" class="btn btn-primary" style="text-align: center;">방명록 작성하기</button>
+                </div>
+            </div>
+            <div class="row commentRow">
+                <div class="col-12 comment">
+                    <div class="row">
+                        <div class="col-4">
+                            a
+                        </div>
+                        <div class="col-8">
+                            b
                         </div>
                     </div>
                 </div>
