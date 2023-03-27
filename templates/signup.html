@@ -55,13 +55,28 @@
                 success: function (response) {
                     if (response['result'] == 'success') {
                         alert('회원가입이 완료되었습니다.')
-                        window.location.href = '/login'
+                        window.location.href = '/'
                     } else {
                         window.location.reload() // 아이디가 이미 DB에 존재하는 경우 처리
                     }
                 }
             })
         }
+
+        $(document).ready(function() {
+  $('#userpw-check').keyup(function() {
+    var password = $('#userpw').val();
+    var confirmPassword = $('#userpw-check').val();
+    
+    if (password != confirmPassword) {
+      $('#userpw-check').css('border-color', 'red');
+      $('#error-message').html('비밀번호가 일치하지 않습니다.').css('color', 'red');
+    } else {
+      $('#userpw-check').css('border-color', '');
+      $('#error-message').html('').css('color', '');
+    }
+  });
+});
     </script>
 </head>
 
@@ -82,9 +97,10 @@
             <div class="row">
                 <div class="col" style="margin:25px 50px 10px 50px">
                     <p>비밀번호</p>
-                    <input type="text" class="form-control" id="userpw" placeholder="숫자, 영문, 특수문자 조합 최소 8자"
+                    <input type="password" class="form-control" id="userpw" placeholder="숫자, 영문, 특수문자 조합 최소 8자"
                         style="margin-bottom: 10px;">
-                    <input type="text" class="form-control" placeholder="비밀번호 재입력">
+                    <input type="password" class="form-control" placeholder="비밀번호 재입력" id="userpw-check">
+                    <span id="error-message"></span>
                 </div>
             </div>
         </div>
