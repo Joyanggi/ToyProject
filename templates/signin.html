@@ -1,110 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.js"
-        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        body {
-            background-color: rgb(239, 239, 239);
-            /* margin-top: 20px; */
-        }
+      body {
+        background-color: rgb(239, 239, 239);
+        /* margin-top: 20px; */
+      }
 
-        .main {
-            background-color: rgb(239, 239, 239);
+      .main {
+        background-color: rgb(239, 239, 239);
 
-            width: 35%;
-            height: 1000px;
-            margin: auto;
-        }
+        width: 35%;
+        height: 1000px;
+        margin: auto;
+      }
 
-        .mainLogo {
-            /* background-color: beige; */
-            height: 100px;
-            background-image: url(/static/images/IMG_7217.png);
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            margin: 20px 50px 0px 50px;
-        }
+      .mainLogo {
+        /* background-color: beige; */
+        height: 100px;
+        background-image: url(/static/images/IMG_7217.png);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        margin: 20px 50px 0px 50px;
+      }
     </style>
     <script>
-        // {% if msg %}
-        // alert("{{ msg }}")
-        // {% endif %} 검색해보
-        
-        // ['쿠키'라는 개념에 대해 알아봅시다]
-        // 로그인을 구현하면, 반드시 쿠키라는 개념을 사용합니다.
-        // 페이지에 관계없이 브라우저에 임시로 저장되는 정보입니다. 키:밸류 형태(딕셔너리 형태)로 저장됩니다.
-        // 쿠키가 있기 때문에, 한번 로그인하면 네이버에서 다시 로그인할 필요가 없는 것입니다.
-        // 브라우저를 닫으면 자동 삭제되게 하거나, 일정 시간이 지나면 삭제되게 할 수 있습니다.
-        function login() {
-            $.ajax({
-                type: "POST",
-                url: "/signin",
-                data: { id_give: $('#userid').val(), pw_give: $('#userpw').val() },
-                success: function (response) {
-                    if (response['result'] == 'success') {
-                        // 로그인이 정상적으로 되면, 토큰을 받아옵니다.
-                        // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
-                        $.cookie('mytoken', response['token']);
+      // {% if msg %}
+      // alert("{{ msg }}")
+      // {% endif %} 검색해보
 
-                        alert('로그인 완료!')
-                        window.location.href = '/'
-                    } else {
-                        // 로그인이 안되면 에러메시지를 띄웁니다.
-                        alert(response['msg']) // login.py에서 msg : 다시 로그인 해주세요 설정하기
-                        window.location.href = '/login'
-                    }
-                }
-            })
-        }
+      // ['쿠키'라는 개념에 대해 알아봅시다]
+      // 로그인을 구현하면, 반드시 쿠키라는 개념을 사용합니다.
+      // 페이지에 관계없이 브라우저에 임시로 저장되는 정보입니다. 키:밸류 형태(딕셔너리 형태)로 저장됩니다.
+      // 쿠키가 있기 때문에, 한번 로그인하면 네이버에서 다시 로그인할 필요가 없는 것입니다.
+      // 브라우저를 닫으면 자동 삭제되게 하거나, 일정 시간이 지나면 삭제되게 할 수 있습니다.
+      function login() {
+        $.ajax({
+          type: "POST",
+          url: "/signin",
+          data: { id_give: $("#userid").val(), pw_give: $("#userpw").val() },
+          success: function (response) {
+            if (response["result"] == "success") {
+              // 로그인이 정상적으로 되면, 토큰을 받아옵니다.
+              // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
+              $.cookie("mytoken", response["token"]);
+
+              alert("로그인 완료!");
+              window.location.href = "/";
+            } else {
+              // 로그인이 안되면 에러메시지를 띄웁니다.
+              alert(response["msg"]); // login.py에서 msg : 다시 로그인 해주세요 설정하기
+              window.location.href = "/login";
+            }
+          },
+        });
+      }
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="main">
-        <div class="mainLogo">
-
-        </div>
-        <div class="inputId">
-            <div class="row">
-                <div class="col" style="margin:20px 50px 0px 50px">
-                    <p>아이디</p>
-                    <input type="text" class="form-control" id="userid" placeholder="영문, 숫자 5-11자">
-                </div>
-            </div>
-        </div>
-        <div class="inputPw">
-            <div class="row">
-                <div class="col" style="margin:25px 50px 10px 50px">
-                    <p>비밀번호</p>
-                    <input type="text" class="form-control" id="userpw" placeholder="숫자, 영문, 특수문자 조합 최소 8자"
-                        style="margin-bottom: 10px;">
-                </div>
-            </div>
-        </div>
+      <div class="mainLogo"></div>
+      <div class="inputId">
         <div class="row">
-            <div class="col" style="margin:25px 50px 10px 50px">
-                <button type="button" class="btn btn-dark" style="width: 100%;" onclick="login()">로그인 하기</button>
-            </div>
+          <div class="col" style="margin: 20px 50px 0px 50px">
+            <p>아이디</p>
+            <input
+              type="text"
+              class="form-control"
+              id="userid"
+              placeholder="영문, 숫자 5-11자"
+            />
+          </div>
         </div>
+      </div>
+      <div class="inputPw">
+        <div class="row">
+          <div class="col" style="margin: 25px 50px 10px 50px">
+            <p>비밀번호</p>
+            <input
+              type="text"
+              class="form-control"
+              id="userpw"
+              placeholder="숫자, 영문, 특수문자 조합 최소 8자"
+              style="margin-bottom: 10px"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="margin: 25px 50px 10px 50px">
+          <button
+            type="button"
+            class="btn btn-dark"
+            style="width: 100%"
+            onclick="login()"
+          >
+            로그인 하기
+          </button>
+        </div>
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
