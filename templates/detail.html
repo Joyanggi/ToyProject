@@ -1,221 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.js"
-        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        body{
-            background-color: rgb(238, 240, 243);
-        }
-        * {
-            box-sizing: border-box;
-        }
-        .header > img{  /* 최상단 로고쪽 css */
-            max-width: 300px;
-            margin: 20px 20px 20px 20px;
-        }
-        .btn{   /* 최상단 회원버튼쪽 css */
-            text-align: right;
-        }
-        .btn > button{  /* 최상단 회원버튼쪽 css */
-            margin: 20px 20px 20px 0px;
-        }
-        .main{  /* 메인 프로필 관련 영역 css */
-            width: 95%;
-            margin: 0 auto;
-        }
-        .imageArea{ /* 메인 프로필 이미지 영역 css */
-            border: 1px solid black;
-            background-color: white;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            margin: 0 auto;
-            object-fit: cover;
-            overflow: hidden;
-        }
-        .imageArea > img{   /* 메인 프로필 이미지 관련 css */
-            display: block;
-            margin: auto;
-            width: 100%;
-        }
-        .nameArea{  /* 메인 프로필 이름 관련 css */
-            /* border: 1px solid black; */
-            font-size: 60px;
-            text-align: center;
-        }
-        .main2{ /* 프로필 편집버튼 영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-            text-align: right;
-        }
-        .main3{ /* 프로필 정보 영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-            font-size: 20px;
-        }
-        .main4{ /* 방명록 영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-        }
-        .main4 > .col-12{   /* 방명록 영역별 관련 css */
-            border: 1px solid black;
-            height: 300px;
-            
-        }
-        .userImgArea{   /* 방명록 작성자 이미지영역 관련 css */
-            border: 1px solid black;
-            background-color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            overflow: hidden;
-        }
-        .userImgArea > img{    /* 방명록 작성자 이미지 관련 css */
-            display: block;
-            margin: auto;
-            height: 100%;
-        }
-        .userNameArea{  /* 방명록 작성자 이름영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-            font-size: 30px;
-        }
-        .userCommentArea{   /* 방명록 작성자 방명록영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-            max-height: 150px;
-            overflow: scroll;
-        }
+      body {
+        background-color: rgb(238, 240, 243);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      .header > img {
+        /* 최상단 로고쪽 css */
+        max-width: 300px;
+        margin: 20px 20px 20px 20px;
+      }
+      .btn {
+        /* 최상단 회원버튼쪽 css */
+        text-align: right;
+      }
+      .btn > button {
+        /* 최상단 회원버튼쪽 css */
+        margin: 20px 20px 20px 0px;
+      }
+      .main {
+        /* 메인 프로필 관련 영역 css */
+        width: 95%;
+        margin: 0 auto;
+      }
+      .imageArea {
+        /* 메인 프로필 이미지 영역 css */
+        border: 1px solid black;
+        background-color: white;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        margin: 0 auto;
+        object-fit: cover;
+        overflow: hidden;
+      }
+      .imageArea > img {
+        /* 메인 프로필 이미지 관련 css */
+        display: block;
+        margin: auto;
+        width: 100%;
+      }
+      .nameArea {
+        /* 메인 프로필 이름 관련 css */
+        /* border: 1px solid black; */
+        font-size: 60px;
+        text-align: center;
+      }
+      .main2 {
+        /* 프로필 편집버튼 영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+        text-align: right;
+      }
+      .main3 {
+        /* 프로필 정보 영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+        font-size: 20px;
+      }
+      .main4 {
+        /* 방명록 영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+      }
+      .main4 > .col-12 {
+        /* 방명록 영역별 관련 css */
+        border: 1px solid black;
+        height: 300px;
+      }
+      .userImgArea {
+        /* 방명록 작성자 이미지영역 관련 css */
+        border: 1px solid black;
+        background-color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        overflow: hidden;
+      }
+      .userImgArea > img {
+        /* 방명록 작성자 이미지 관련 css */
+        display: block;
+        margin: auto;
+        height: 100%;
+      }
+      .userNameArea {
+        /* 방명록 작성자 이름영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+        font-size: 30px;
+      }
+      .userCommentArea {
+        /* 방명록 작성자 방명록영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+        max-height: 150px;
+        overflow: scroll;
+      }
     </style>
     <script>
+      $(document).ready(function () {
+        let result = document.getElementById("result_info").innerText;
+        console.log(result);
 
-        
-        $(document).ready(function () {
-            let result = document.getElementById('result_info').innerText
-            console.log(result)
-            
-            profile();
-        });
-        
-        // function profile() {
-        //     fetch("/profile/<userId>").then((res) => res.json()).then((data) => {
-        //         let rows = data['result']
-        //         console.log(rows)
-        //     });
-        // }
+        profile();
+      });
 
+      // function profile() {
+      //     fetch("/profile/<userId>").then((res) => res.json()).then((data) => {
+      //         let rows = data['result']
+      //         console.log(rows)
+      //     });
+      // }
+      function logOutHandler() {
+        document.cookie =
+          "mytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href="/";
+      }
     </script>
-</head>
-<body>
-    <div id="result_info" style="display: none;">"{{profile_result}}"</div>
-    <div class="row">   <!-- 최상단 로고, 회원관련 영역 시작-->
-        <div class="col-6 header">
-            <img src="/static/images/IMG_7217.png">
+  </head>
+  <body>
+    <div id="result_info" style="display: none">"{{profile_result}}"</div>
+    <div class="row">
+      <!-- 최상단 로고, 회원관련 영역 시작-->
+      <div class="col-6 header">
+        <img src="/static/images/IMG_7217.png" />
+      </div>
+      <div class="col-6 btn" id="buttons">
+        <button
+          type="button"
+          class="btn btn-primary"
+          onClick="location.href='/profile'"
+        >
+          프로필수정
+        </button>
+        <button type="button" class="btn btn-primary" onClick="logOutHandler()">
+          로그아웃
+        </button>
+      </div>
+    </div>
+    <!-- 최상단 로고, 회원관련 영역 끝-->
+    <div class="row main">
+      <!-- 본인 이미지, 이름 영역 시작-->
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 imageArea">
+            <img
+              src="/static/images/d84248170c2c52303db27306a00fb861effd194bae87d73dd00522794070855d.png"
+            />
+          </div>
+          <div id="{{result}}" class="col-12 nameArea">
+            <p>{{name}}</p>
+          </div>
         </div>
-        <div class="col-6 btn">
-            <button type="button" class="btn btn-outline-primary" style="border: none;">로그인</button>
-            <button type="button" class="btn btn-primary">회원가입</button>
-        </div>
-    </div>  <!-- 최상단 로고, 회원관련 영역 끝-->
-    <div class="row main">  <!-- 본인 이미지, 이름 영역 시작-->
-        <div class="col-12">
+      </div>
+    </div>
+    <!-- 본인 이미지, 이름 영역 끝-->
+    <hr
+      style="width: 95%; margin: 0 auto; margin-top: 20px; margin-bottom: 20px"
+    />
+    <div class="row main2">
+      <!-- 편집버튼 영역 시작-->
+      <div class="col-12 editBtnArea">
+        <button type="button" class="btn btn-primary">프로필 편집</button>
+      </div>
+    </div>
+    <!-- 편집버튼 영역 끝-->
+    <div class="row main3">
+      <!-- 본인 프로필 영역 시작 -->
+      <div class="col-12">
+        <p><i class="fa-solid fa-laptop-code"></i>{{field}}</p>
+      </div>
+      <div class="col-12">
+        <p><i class="fa-brands fa-github"></i>{{github}}</p>
+      </div>
+      <div class="col-12">
+        <p><i class="fa-brands fa-chrome"></i>{{blog}}</p>
+      </div>
+      <div class="col-12">
+        <p><i class="fa-regular fa-newspaper"></i>{{mbti}}</p>
+      </div>
+      <div class="col-12">
+        <p>
+          <i class="fa-brands fa-instagram"></i>instagram 정보는 여기로
+          불러주시면 됩니다.
+        </p>
+      </div>
+      <div class="col-12">
+        <p>
+          <i class="fa-sharp fa-solid fa-pen-to-square"></i>한 줄 소개 정보는
+          여기로 불러주시면 됩니다.
+        </p>
+      </div>
+    </div>
+    <!-- 본인 프로필 영역 끝 -->
+    <hr
+      style="width: 95%; margin: 0 auto; margin-top: 20px; margin-bottom: 20px"
+    />
+    <div class="row main2">
+      <!-- 편집버튼 영역 시작-->
+      <div class="col-12 editBtnArea">
+        <button type="button" class="btn btn-primary">방명록 남기기</button>
+      </div>
+    </div>
+    <!-- 편집버튼 영역 끝-->
+    <div class="row main4">
+      <!-- 방명록 영역 시작 -->
+      <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+        <!-- 여기서부터 방명록 코드 반복시작-->
+        <div class="row" style="margin-top: 10px">
+          <div class="col-12" style="width: 95%; margin: 0 auto">
             <div class="row">
-                <div class="col-12 imageArea">
-                    <img src="/static/images/d84248170c2c52303db27306a00fb861effd194bae87d73dd00522794070855d.png">
-                </div>
-                <div id="{{result}}" class="col-12 nameArea">
-                    <p>{{name}}</p>
-                </div>
+              <div class="col-2 userImgArea"></div>
+              <div class="col-10 userNameArea">이름</div>
             </div>
+          </div>
+          <hr
+            style="
+              width: 95%;
+              margin: 0 auto;
+              margin-top: 20px;
+              margin-bottom: 20px;
+            "
+          />
+          <div class="col-12 userCommentArea" style="border: 1px solid black">
+            <p>
+              방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
+            </p>
+          </div>
         </div>
-    </div>  <!-- 본인 이미지, 이름 영역 끝-->
-    <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
-    <div class="row main2"> <!-- 편집버튼 영역 시작-->
-        <div class="col-12 editBtnArea">
-            <button type="button" class="btn btn-primary">프로필 편집
-
-            </button>
-        </div>
-    </div>  <!-- 편집버튼 영역 끝-->
-    <div class="row main3"> <!-- 본인 프로필 영역 시작 -->
-        <div class="col-12">
-            <p><i class="fa-solid fa-laptop-code"></i>{{field}}</p>
-        </div>
-        <div class="col-12">
-            <p><i class="fa-brands fa-github"></i>{{github}}</p>
-        </div>
-        <div class="col-12">
-            <p><i class="fa-brands fa-chrome"></i>{{blog}}</p>
-        </div>
-        <div class="col-12">
-            <p><i class="fa-regular fa-newspaper"></i>{{mbti}}</p>
-        </div>
-        <div class="col-12">
-            <p><i class="fa-brands fa-instagram"></i>instagram 정보는 여기로 불러주시면 됩니다.</p>
-        </div>
-        <div class="col-12">
-            <p><i class="fa-sharp fa-solid fa-pen-to-square"></i>한 줄 소개 정보는 여기로 불러주시면 됩니다.</p>
-        </div>
-    </div>  <!-- 본인 프로필 영역 끝 -->
-    <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
-    <div class="row main2"> <!-- 편집버튼 영역 시작-->
-        <div class="col-12 editBtnArea">
-            <button type="button" class="btn btn-primary">방명록 남기기
-
-            </button>
-        </div>
-    </div>  <!-- 편집버튼 영역 끝-->
-    <div class="row main4"> <!-- 방명록 영역 시작 -->
-        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px;"> <!-- 여기서부터 방명록 코드 반복시작-->
-            <div class="row" style="margin-top: 10px;">
-                <div class="col-12" style=" width: 95%; margin:0 auto">
-                    <div class="row" >
-                        <div class="col-2 userImgArea">
-                            
-                        </div>
-                        <div class="col-10 userNameArea">
-                            이름
-                        </div>
-                    </div>
-                </div>
-                <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
-                <div class="col-12 userCommentArea" style="border:1px solid black">
-                    <p>방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                    </p>
-                </div>
+      </div>
+      <!-- 여기서부터 방명록 코드 반복 끝-->
+      <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+        <!-- 여기서부터 방명록 코드 반복시작-->
+        <div class="row" style="margin-top: 10px">
+          <div
+            class="col-12"
+            style="border: 1px solid black; width: 95%; margin: 0 auto"
+          >
+            <div class="row">
+              <div class="col-2 userImgArea"></div>
+              <div class="col-10 userNameArea">이름</div>
             </div>
         </div>  <!-- 여기서부터 방명록 코드 반복 끝-->
         <div class="col-12" style="margin-top: 10px; margin-bottom: 10px;"><!-- 여기서부터 방명록 코드 반복시작-->

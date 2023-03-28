@@ -73,7 +73,28 @@
       var preview = document.getElementById("preview");
       preview.src = URL.createObjectURL(event.target.files[0]);
     }
+    var base64
+    const uploadProfile = async (e) => {
+      const file = (e.target.files)[0];
 
+      base64 = await convertBase64(file);
+    }
+    
+    const convertBase64 = (file) => {
+      return new Promise((resolve,rejects) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = (() => {
+          resolve(fileReader.result);
+        });
+
+        fileReader.onerror = (() => {
+          rejects(Error)
+        })
+      })
+    }
+    
     function save_profile() {
       let name = $('#name').val()
       let field = $('#field').val()
@@ -81,7 +102,20 @@
       let blog = $('#blog').val()
       let email = $('#email').val()
       let MBTI = $('#MBTI').val()
-
+      let image = base64
+      // if(name=="") {
+      //   alert("이름을 입력해주세요.");
+      //   return;
+      // }
+      // if(field=="") {
+      //   alert("직무를 선택해주세요.");   // 작동안함..
+      //   return;
+      // }
+      // if(email=="") {
+      //   alert("이메일을 입력해주세요."); // 이름, 이메일은 작동함 but 이름 입력 안하면 입력해주세요 메세지창 뜬 후 기존 데이터도 사라짐
+      //   return;
+      // }
+      
       let formData = new FormData();
       formData.append("name_give", name);
       formData.append("field_give", field);
@@ -90,6 +124,7 @@
       formData.append("email_give", email);
       formData.append("MBTI_give", MBTI);
       formData.append("userid_give", userid);
+      formData.append("image_give", image);
 
       fetch('/profile', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
         alert(data['msg']);
@@ -119,7 +154,7 @@
           <form class="upload_photo">
             <img id="preview" class="card-img-top" src="#" alt="미리보기" /> <br /><br />
             <label for="formFile" class="form-label">업로드 할 사진을 선택하세요.</label>
-            <input class="form-control" type="file" id="formFile" name="image" onchange="previewImage(event)" /><br />
+            <input class="form-control" type="file" id="formFile" name="image" onChange="uploadProfile(event)" /><br />
           </form>
         </div>
         <div class="form row col-6">
@@ -130,8 +165,12 @@
               <input type="text" class="form-control" id="name">
             </div>
             <div class="col-12">
-              <label for="inputPassword4" class="form-label">field</label>
-              <input type="text" class="form-control" id="field">
+              <label for="inputState" class="form-label">field</label>
+              <select id="field" class="form-select">
+                <option selected>field...</option>
+                <option>Frontend</option>
+                <option>Backend</option>
+              </select>
             </div>
             <div class="col-12">
               <label for="inputAddress" class="form-label">github</label>

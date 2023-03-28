@@ -89,11 +89,12 @@
 				let blog = e['blog']
 				let email = e['email']
 				let mbti = e['mbti']
+        let image = e['image']
         
 				let temp_html = `<a href="/profile/${userid}">
                           <div class="col">
                             <div id="${userid}" class="card">
-                            <img src="" alt="..." />
+                            <img src="${image}" alt="..." />
                             <div class="card-body">
                               <h5 class="card-title">${name}</h5>
                               <p class="card-text">직무 : ${field}</p>
@@ -120,11 +121,10 @@
     <div class="mainBtns">
       <div id="signButton">
         <button type="button" class="btn btn-outline-primary" onClick="location.href='signin'" style="border: none">
-
-          Sign in
+          로그인
         </button>
         <button type="button" class="btn btn-primary" onClick="location.href='signup'">
-          Sign Up
+          회원가입
         </button>
       </div>
       <div id="signoutButton">
@@ -132,7 +132,7 @@
           프로필 등록하기
         </button>
         <button type="button" class="btn btn-primary" id="sign-out-button" onclick="logOutHandler()">
-          Sign Out
+          로그아웃
         </button>
       </div>
     </div>
