@@ -56,13 +56,15 @@
     </style>
     <script>
       $(document).ready(function () {
-        valid();
+        valid().then((response) => {
+            console.log(response)
+        });
       });
       function valid() {
-        fetch("/valid")
+        return fetch("/valid")
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            return data;
           });
       }
     </script>
