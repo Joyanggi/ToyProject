@@ -60,13 +60,13 @@
   </style>
   <script>
     $(document).ready(function () {
-      valid().then((response) => {
-        console.log(response)
-        response['result'] == "fail" ?
-        $('#signButton').css('display', 'block')
-          : $('#signoutButton').css('display', 'block') // 왜 순서를 바꾸면 안 되죠..?
-      });
-
+      	show_profile();
+      	valid().then((response) => {
+			// console.log(response)
+			response['result'] == "fail" ?
+			$('#signButton').css('display', 'block')
+			: $('#signoutButton').css('display', 'block') // 왜 순서를 바꾸면 안 되죠..?
+      	});
     });
     function valid() {
       return fetch("/valid")
@@ -75,6 +75,36 @@
           return data;
         });
     }
+
+    function show_profile() {
+		fetch('/profile/all').then((res) => res.json()).then((data) => {
+			let rows = data['result']
+			console.log(rows)
+			$('#profile-box').empty()
+			rows.forEach((e) => {
+				let userid = e['userid']
+				let name = e['name']
+				let field = e['field']
+				let github = e['github']
+				let blog = e['blog']
+				let email = e['email']
+				let mbti = e['mbti']
+
+				let temp_html = `<div class="col">
+									<div class="card">
+									<img src="" alt="..." />
+									<div class="card-body">
+										<h5 class="card-title">${name}</h5>
+										<p class="card-text">직무 : ${field}</p>
+										<a class="card-text" href="${blog}">블로그 : ${blog}</a>
+										<p class="card-text">MBTI : ${mbti}</p>
+									</div>
+									</div>
+								</div>`
+				$('#profile-box').append(temp_html)
+			})
+		})
+	}
 
     function logOutHandler() {
       document.cookie = 'mytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
@@ -116,7 +146,7 @@
     </div>
   </div>
   <div class="cards">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div id="profile-box" class="row row-cols-1 row-cols-md-3 g-4">
       <div class="col">
         <div class="card">
           <img src="/static/images/467704_392166_1110.jpg" class="card-img-top" alt="..." />
