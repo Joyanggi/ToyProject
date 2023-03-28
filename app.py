@@ -152,7 +152,7 @@ def profile_post():
 def profile_check():
     userid_receive = request.args.get('userId')
     print(userid_receive)
-    result = db.profile.find_one({'userid':userid_receive})
+    result = db.profile.find_one({'userid':userid_receive},{'_id':False})
     print(result)
     return jsonify({'result':result})
 
