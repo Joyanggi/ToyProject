@@ -51,21 +51,30 @@
     .card>img {
       object-fit: cover;
     }
-    #signButton{
+
+    #signButton {
       display: none;
     }
-    #signoutButton{
+
+    #signoutButton {
       display: none;
     }
   </style>
   <script>
+
     $(document).ready(function () {
       show_profile()
       valid().then((response) => {
         console.log(response)
+
         response['result'] == "fail" ?
-        $('#signButton').css('display', 'block')
+          $('#signButton').css('display', 'block')
           : $('#signoutButton').css('display', 'block')
+        
+        if (response['result']['id'] != undefined){
+          profile_check(response['result']['id'])
+        }
+        
       });
     });
     function valid() {
@@ -76,22 +85,54 @@
         });
     }
 
+    var isProfile = false
+    function profile_check(userId) {
+      console.log(userId)
+      $.ajax({
+        type: "GET",
+        url: "/profileCheck",
+        data: {
+          userId: userId
+        },
+        success: function (response) {
+          console.log(response['result'])
+          if (response['result'] != null) {
+            isProfile = true
+            console.log(isProfile)
+          } else {
+            console.log("result is null!")
+          }
+        }
+      });
+      // fetch('/profileCheck/'+userId).then((res) => res.json()).then((data) => {
+
+      // console.log(userId)
+      // let rows = data['result']
+      // console.log(rows)
+      // if (data['result'] == null) {
+      //   window.location.href = '/profile';
+      // } else {
+      //   window.location.href = '/profile/userId?' + userId;
+      // }
+      // })
+    }
+
     function show_profile() {
-		fetch('/profile/all').then((res) => res.json()).then((data) => {
-			let rows = data['result']
-			console.log(rows)
-			$('#profile-box').empty()
-			rows.forEach((e) => {
-				let userid = e['userid']
-				let name = e['name']
-				let field = e['field']
-				let github = e['github']
-				let blog = e['blog']
-				let email = e['email']
-				let mbti = e['mbti']
-        let image = e['image']
-        
-				let temp_html = `<div onClick="location.href ='/profile/${userid}'" style="cursor:pointer;" class="col">
+      fetch('/profile/all').then((res) => res.json()).then((data) => {
+        let rows = data['result']
+        console.log(rows)
+        $('#profile-box').empty()
+        rows.forEach((e) => {
+          let userid = e['userid']
+          let name = e['name']
+          let field = e['field']
+          let github = e['github']
+          let blog = e['blog']
+          let email = e['email']
+          let mbti = e['mbti']
+          let image = e['image']
+
+          let temp_html = `<div onClick="location.href ='/profile/${userid}'" style="cursor:pointer;" class="col">
                             <div class="card" style="padding:5px">
                               <img src="${image}"/>
                               <div class="card-body">
@@ -102,10 +143,10 @@
                               </div>
                             </div>
                           </div>`
-				$('#profile-box').append(temp_html)
-			})
-		})
-	}
+          $('#profile-box').append(temp_html)
+        })
+      })
+    }
 
     function logOutHandler() {
       document.cookie = 'mytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
@@ -126,10 +167,10 @@
         </button>
       </div>
       <div id="signoutButton">
-        <button type="button" class="btn btn-primary" id="profile-register-button" onClick="location.href='profile'">
-          프로필 등록하기
+        <button type="button" class="btn btn-primary" id="profile-register-button" onClick="profile_check()">
+          마이 프로필
         </button>
-        <button type="button" class="btn btn-primary" id="sign-out-button" onclick="logOutHandler()">
+        <button type="button" class="btn btn-primary" id="sign-out-button" onClick="logOutHandler()">
           로그아웃
         </button>
       </div>

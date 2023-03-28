@@ -148,11 +148,13 @@ def profile_post():
     
     return jsonify({'msg':'프로필이 등록되었습니다.'})
 
-@app.route("/profileCheck/<userId>", methods=["GET"])
-def profile_check(userId):
-    print(userId)
-    profile_result = db.profile.find_one({'userid':userId})
-    return jsonify({'result':profile_result})
+@app.route("/profileCheck", methods=['GET'])
+def profile_check():
+    userid_receive = request.args.get('userId')
+    print(userid_receive)
+    result = db.profile.find_one({'userid':userid_receive})
+    print(result)
+    return jsonify({'result':result})
 
 # 프로필 조회
 @app.route("/profile/<userId>", methods=["GET"])
