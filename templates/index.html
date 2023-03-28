@@ -66,7 +66,7 @@
         $('#signButton').css('display', 'block')
           : $('#signoutButton').css('display', 'block')
       });
-
+	  show_profile()
     });
     function valid() {
       return fetch("/valid")
@@ -91,7 +91,7 @@
 				let mbti = e['mbti']
 
 				let temp_html = `<div class="col">
-									<div class="card">
+									<div id="${userid}" class="card">
 									<img src="" alt="..." />
 									<div class="card-body">
 										<h5 class="card-title">${name}</h5>
