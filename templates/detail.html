@@ -17,112 +17,84 @@
         * {
             box-sizing: border-box;
         }
-        .header{
-            /* background-color: beige; */
-        }
-        .header > img{
+        .header > img{  /* 최상단 로고쪽 css */
             max-width: 300px;
             margin: 20px 20px 20px 20px;
         }
-        .btn{
-            /* background-color: blueviolet; */
+        .btn{   /* 최상단 회원버튼쪽 css */
             text-align: right;
         }
-        .btn > button{
+        .btn > button{  /* 최상단 회원버튼쪽 css */
             margin: 20px 20px 20px 0px;
         }
-        .left{
-            background-color: beige;
-            /* padding: 0px 20px 0px 20px; */
-            /* border: 1px solid black; */
-        }
-        .right{
-            background-color: blueviolet;
-            border: 1px solid black;
-            height: 1000px;
-        }
-        .imgbox{
-            background-color: blanchedalmond;
-            height: 300px;
-            width: 300px;
-            
-        }
-        /* .innerRow{
-            text-align: center;
-        } */
-        .inner{
-            border: 1px solid black;
-            width: 80%;
-            height: 450px;
-            margin-left: 30px;
+        .main{  /* 메인 프로필 관련 영역 css */
+            width: 95%;
             margin: 0 auto;
         }
-        #container{
-            /* border: 1px solid black; */
-            margin-left: 30px;
-            margin-right: 30px;
-        }
-        .profileImg{
+        .imageArea{ /* 메인 프로필 이미지 영역 css */
             border: 1px solid black;
-            width: 300px;
-            height: 300px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
             margin: 0 auto;
-            margin-top: 40px;
-        }
-        .profileImg > img{
-            width: 100%;
-            height: 100%;
-            object-fit: corver;
+            object-fit: cover;
             overflow: hidden;
         }
-        .profile{
-            border: 1px solid black;
+        .imageArea > img{   /* 메인 프로필 이미지 관련 css */
+            display: block;
+            margin: auto;
             width: 100%;
-            height: 300px;
-            margin: 0 auto;
-            margin-top: 40px;
         }
-        .detailProfile{
-            margin-top: 50px;
-        }
-        .addImgBtn{
+        .nameArea{  /* 메인 프로필 이름 관련 css */
+            border: 1px solid black;
+            font-size: 60px;
             text-align: center;
         }
-        .addImgBtn > button{
-            width: 300px;
-            margin-top: 20px;
-        }
-        .addProfileBtn {
-            margin-top: 20px;
-        }
-        .editBtn{
-            margin-top: 20px;
+        .main2{ /* 프로필 편집버튼 영역 관련 css */
+            width: 95%;
+            margin: 0 auto;
             text-align: right;
         }
-        .visitBtn{
-            text-align: right;
-            width: 80%;
-            background-color: yellowgreen;
+        .main3{ /* 프로필 정보 영역 관련 css */
+            width: 95%;
+            margin: 0 auto;
+            font-size: 20px;
+        }
+        .main4{ /* 방명록 영역 관련 css */
+            width: 95%;
             margin: 0 auto;
         }
-        .visitBtn > button{
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-        /* .commentRow{
-            width: 80%;
-            margin: 0 auto;
-        } */
-        .comment{
+        .main4 > .col-12{   /* 방명록 영역별 관련 css */
             border: 1px solid black;
-            width: 80%;
+            height: 300px;
+            
+        }
+        .userImgArea{   /* 방명록 작성자 이미지영역 관련 css */
+            border: 1px solid black;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            overflow: hidden;
+        }
+        .userImgArea > img{ /* 방명록 작성자 이미지 관련 css */
+            display: block;
+            margin: auto;
+            height: 100%;
+        }
+        .userNameArea{   /* 방명록 작성자 이름 관련 css */
+            width: 95%;
             margin: 0 auto;
-            background-color: violet;
+            
+        }
+        .userCommentArea{    /* 방명록 작성자 방명록 글 관련 css */
+            width: 95%;
+            margin: 0 auto;
         }
     </style>
 </head>
 <body>
-    <div class="row">
+    <div class="row">   <!-- 최상단 로고, 회원관련 영역 시작-->
         <div class="col-6 header">
             <img src="/static/images/IMG_7217.png">
         </div>
@@ -130,104 +102,105 @@
             <button type="button" class="btn btn-primary">회원가입</button>
             <button type="button" class="btn btn-primary">로그인</button>
         </div>
-    </div>
-    <div class="row" id="container">
-        <div class="col-12 col-xl-10 left">
-            <div class="row innerRow">
-                <div class="col-12 inner">
-                    <div class="row">
-                        <div class="col-xxl-4 col-12">
-                            <div class-="row">
-                                <div class="col-12 profileImg">
-                                    <img src="/static/images/467704_392166_1110.jpg">
-                                </div>
-                                <div class="col-12 addImgBtn">
-                                    <button type="button" class="btn btn-primary" style="text-align: center;">이미지 업로드</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-8 col-12">
-                            <div class-="row">
-                                <div class="col-12 profile">
-                                    <div class="row detailProfile">
-                                        <div class="col-2" style="text-align: right;">
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                name |
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                field |
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                github |
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                blog |
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                mbti |
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                한 줄 소개 |
-                                            </div>
-                                        </div>
-                                        <div class="col-10">
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                get name
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                get field
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                get github
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                get blog
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                get mbit
-                                            </div>
-                                            <div class="col-12" style="margin-top: 5px;">
-                                                한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 한 줄 소개 
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6 addProfileBtn">
-                                        <button type="button" class="btn btn-primary" style="text-align: center;">인스타그램</button>
-                                        <button type="button" class="btn btn-primary" style="text-align: center;">페이스북</button>
-                                    </div>
-                                    <div class="col-6 editBtn">
-                                        <button type="button" class="btn btn-primary" style="text-align: center;">등록 / 수정하기</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    </div>  <!-- 최상단 로고, 회원관련 영역 끝-->
+    <div class="row main">  <!-- 본인 이미지, 이름 영역 시작-->
+        <div class="col-12">
             <div class="row">
-                <div class="col-12 visitBtn">
-                    <button type="button" class="btn btn-primary" style="text-align: center;">방명록 작성하기</button>
+                <div class="col-12 imageArea">
+                    <img src="/static/images/467704_392166_1110.jpg">
+                </div>
+                <div class="col-12 nameArea">
+                    <p>조양기</p>
                 </div>
             </div>
-            <div class="row commentRow">
-                <div class="col-12 comment">
-                    <div class="row">
-                        <div class="col-4">
-                            a
+        </div>
+    </div>  <!-- 본인 이미지, 이름 영역 끝-->
+    <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
+    <div class="row main2"> <!-- 편집버튼 영역 시작-->
+        <div class="col-12 editBtnArea">
+            <button type="button" class="btn btn-primary">프로필 편집
+
+            </button>
+        </div>
+    </div>  <!-- 편집버튼 영역 끝-->
+    <div class="row main3"> <!-- 본인 프로필 영역 시작 -->
+        <div class="col-12">
+            <p>field</p>
+        </div>
+        <div class="col-12">
+            <p>github</p>
+        </div>
+        <div class="col-12">
+            <p>blog</p>
+        </div>
+        <div class="col-12">
+            <p>mbti</p>
+        </div>
+        <div class="col-12">
+            <p>instagram</p>
+        </div>
+        <div class="col-12">
+            <p>한 줄 소개</p>
+        </div>
+    </div>  <!-- 본인 프로필 영역 끝 -->
+    <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
+    <div class="row main4"> <!-- 방명록 영역 시작 -->
+        <div class="col-12"> <!-- 여기서부터 방명록 코드 반복시작-->
+            <div class="row">
+                <div class="col-12" style="border: 1px solid black; width: 95%; margin:0 auto">
+                    <div class="row" >
+                        <div class="col-2 userImgArea">
+                            
                         </div>
-                        <div class="col-8">
-                            b
+                        <div class="col-10 userNameArea">
+                            이름
                         </div>
                     </div>
                 </div>
+                <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
+                <div class="col-12 userCommentArea" style="border:1px solid black">
+                    방명록
+                </div>
             </div>
-        </div>
-        <div class="col-2 d-none d-xl-block right">
-            b
-        </div>
-    </div>
+        </div>  <!-- 여기서부터 방명록 코드 반복 끝-->
+        <div class="col-12"><!-- 여기서부터 방명록 코드 반복시작-->
+            <div class="row">
+                <div class="col-12" style="border: 1px solid black; width: 95%; margin:0 auto">
+                    <div class="row" >
+                        <div class="col-2 userImgArea">
+                            
+                        </div>
+                        <div class="col-10 userNameArea">
+                            이름
+                        </div>
+                    </div>
+                </div>
+                <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
+                <div class="col-12 userCommentArea" style="border:1px solid black">
+                    방명록
+                </div>
+            </div>
+        </div>  <!-- 여기서부터 방명록 코드 반복 끝-->
+        <div class="col-12"><!-- 여기서부터 방명록 코드 반복시작-->
+            <div class="row">
+                <div class="col-12" style="border: 1px solid black; width: 95%; margin:0 auto">
+                    <div class="row" >
+                        <div class="col-2 userImgArea">
+                            
+                        </div>
+                        <div class="col-10 userNameArea">
+                            이름
+                        </div>
+                    </div>
+                </div>
+                <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
+                <div class="col-12 userCommentArea" style="border:1px solid black">
+                    방명록
+                </div>
+            </div>
+        </div>  <!-- 여기서부터 방명록 코드 반복 끝-->
+    </div>  <!-- 방명록 영역 끝 -->
+    
 </body>
 
 </html>
