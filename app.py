@@ -10,6 +10,7 @@ ca = certifi.where()
 client = MongoClient('mongodb+srv://sparta:test@cluster0.xxnpzo1.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
 db = client.dbsparta
 
+
 import requests
 
 # JWT 토큰을 만들 때 필요한 비밀문자열입니다. 아무거나 입력해도 괜찮습니다.
@@ -98,7 +99,7 @@ def signin():
         # exp에는 만료시간을 넣어줍니다. 만료시간이 지나면, 시크릿키로 토큰을 풀 때 만료되었다고 에러가 납니다.
         payload = {
             'id': id_receive,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=5)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=1000)
         }
         token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
 
@@ -107,6 +108,39 @@ def signin():
     # 찾지 못하면
     else:
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
+
+
+@app.route('/profile')
+def registerpage():
+    # msg = request.args.get("msg")
+    return render_template('register.html')
+
+# 프로필 등록
+# @app.route("/profile/<string:userId>", methods=['POST'])
+@app.route("/profile", methods=["POST"])
+def profile_post():
+    userid_receive = request.form['userid_give']
+    name_receive = request.form['name_give']
+    field_receive = request.form['field_give']
+    github_receive = request.form['github_give']
+    blog_receive = request.form['blog_give']
+    email_receive = request.form['email_give']
+    mbti_receive = request.form['MBTI_give']
+    # image_receive = request.form['image_give']
+
+    doc = {
+        'userid':userid_receive,
+        'name':name_receive,
+        'field':field_receive,
+        'github':github_receive,
+        'blog':blog_receive,
+        'email':email_receive,
+        'mbti':mbti_receive
+        # 'image':image_receive
+    }
+    db.profile.insert_one(doc)
+    
+    return jsonify({'msg':'프로필이 등록되었습니다.'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
