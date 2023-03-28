@@ -51,7 +51,7 @@
         margin: 20px 50px 0px 50px;
       }
     </style>
-    <script>
+    <script>      
       function join() {
         $.ajax({
           type: "POST",
@@ -70,8 +70,28 @@
           },
         });
       }
+      
+      function allclick(){
+        if($('#allagree').prop('checked')){
+          $('input[type="checkbox"]').prop('checked',true);
+        }else{
+          $('input[type="checkbox"]').prop('checked',false);
+        }
+        }
+        
+      
+      
 
       $(document).ready(function () {
+        $('input[type="checkbox"]').change(function() {
+        let agree1 = $('#agree1').prop('checked');
+        let agree2 = $('#agree2').prop('checked');
+        if (agree1 && agree2) {
+          $('#join-button').prop('disabled', false);
+        } else {
+          $('#join-button').prop('disabled', true);
+        }
+        });
         $("#userpw-check").keyup(function () {
           var password = $("#userpw").val();
           var confirmPassword = $("#userpw-check").val();
@@ -129,7 +149,7 @@
       </div>
       <div class="row">
         <div class="col-12" style="margin: 25px 50px 10px 50px">
-          <input type="checkbox" id="allagree" /> 전체 동의
+          <input type="checkbox" id="allagree" onclick="allclick()"/> 전체 동의
         </div>
         <div class="col-12" style="margin: 0px 50px 10px 50px">
           <input type="checkbox" id="agree1" /> [필수] 이용약관 동의
@@ -158,6 +178,8 @@
             class="btn btn-dark"
             style="width: 100%"
             onclick="join()"
+            id="join-button"
+            disabled
           >
             가입하기
           </button>
@@ -166,3 +188,4 @@
     </div>
   </body>
 </html>
+
