@@ -103,6 +103,7 @@
           agree2 &&
           password == confirmPassword &&
           passwordPattern.test(password)
+            && idPattern.test(userId)
         ) {
           $("#join-button").prop("disabled", false);
         } else {
