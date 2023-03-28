@@ -144,5 +144,10 @@ def profile_post():
     
     return jsonify({'msg':'프로필이 등록되었습니다.'})
 
+@app.route("/profile/all", methods=["GET"])
+def profile_get():
+    profile_data = list(db.profile.find({},{'_id':False}))
+    return jsonify({'result':profile_data})
+
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
