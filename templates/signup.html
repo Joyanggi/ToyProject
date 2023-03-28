@@ -59,10 +59,49 @@
           } else {
             window.location.reload(); // 아이디가 이미 DB에 존재하는 경우 처리
           }
+<<<<<<< HEAD
         },
+=======
+          if(!passwordPattern.test(password)){
+            $("#userpw").css("border-color","red")
+          }else{
+            $("#userpw").css("border-color","");
+          }
+          if (password != confirmPassword) {
+            $("#userpw-check").css("border-color", "red");
+            $("#error-message")
+              .html("비밀번호가 일치하지 않습니다.")
+              .css("color", "red");
+          } else {
+            $("#userpw-check").css("border-color", "");
+            $("#error-message").html("").css("color", "");
+          }
+          if (
+            agree1 &&
+            agree2 &&
+            password == confirmPassword &&
+            passwordPattern.test(password)
+            && idPattern.test(userId)
+          ) {
+            $("#join-button").prop("disabled", false);
+          } else {
+            $("#join-button").prop("disabled", true);
+          }
+        }
+        $('input[type="checkbox"]').change(function () {
+          validateForm();
+        });
+        $('input[type="text"]').keyup(function () {
+          validateForm();
+        });
+        $("#userpw-check").keyup(function () {
+          validateForm();
+        });
+>>>>>>> 88d3fdd (로그인 검증 수정)
       });
     }
 
+<<<<<<< HEAD
     function allclick() {
       if ($("#allagree").prop("checked")) {
         $('input[type="checkbox"]').prop("checked", true);
@@ -127,6 +166,47 @@
   <div class="main">
     <div class="mainLogo"></div>
     <div class="inputId">
+=======
+  <body>
+    <div class="main">
+      <div class="mainLogo"></div>
+      <div class="inputId">
+        <div class="row">
+          <div class="col" style="margin: 20px 50px 0px 50px">
+            <p>아이디</p>
+            <input
+              type="text"
+              class="form-control"
+              id="userid"
+              placeholder="영문, 숫자 조합 5-11자"
+            />
+            <span id="id-error-message"></span>
+          </div>
+        </div>
+      </div>
+      <div class="inputPw">
+        <div class="row">
+          <div class="col" style="margin: 25px 50px 10px 50px">
+            <p>비밀번호</p>
+            <input
+              type="password"
+              class="form-control"
+              id="userpw"
+              placeholder="영문, 숫자 조합 최소 8자"
+              style="margin-bottom: 10px"
+            />
+            <span id="pwd-error-message"></span>
+            <input
+              type="password"
+              class="form-control"
+              placeholder="비밀번호 재입력"
+              id="userpw-check"
+            />
+            <span id="error-message"></span>
+          </div>
+        </div>
+      </div>
+>>>>>>> 88d3fdd (로그인 검증 수정)
       <div class="row">
         <div class="col" style="margin: 20px 50px 0px 50px">
           <p>아이디</p>
