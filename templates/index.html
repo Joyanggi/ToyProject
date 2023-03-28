@@ -51,14 +51,20 @@
     .card>img {
       object-fit: cover;
     }
+    #signButton{
+      display: none;
+    }
+    #signoutButton{
+      display: none;
+    }
   </style>
   <script>
     $(document).ready(function () {
       valid().then((response) => {
         console.log(response)
-        response['result'] != "fail" ?
-        $('#signButton').css('display', 'none')
-          : $('#signoutButton').css('display', 'none') // 왜 순서를 바꾸면 안 되죠..?
+        response['result'] == "fail" ?
+        $('#signButton').css('display', 'block')
+          : $('#signoutButton').css('display', 'block') // 왜 순서를 바꾸면 안 되죠..?
       });
     });
     function valid() {
