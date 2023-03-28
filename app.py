@@ -154,7 +154,8 @@ def profile_get(userId):
                            field=profile_result['field'],
                            github=profile_result['github'],
                            blog=profile_result['blog'],
-                           mbti=profile_result['mbti']
+                           mbti=profile_result['mbti'],
+                           image=profile_result['image']
                            )
 
 @app.route("/profile/all", methods=["GET"])
