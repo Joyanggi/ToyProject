@@ -50,6 +50,7 @@ def valid_user():
         # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
         # 여기에선 그 예로 닉네임을 보내주겠습니다.
         userinfo = db.user.find_one({'id': payload['id']}, {'_id': 0})
+        
         return jsonify({'result': payload})
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
@@ -71,11 +72,15 @@ def signinpage():
 def signup():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give'] 
-    print(id_receive , pw_receive)
+    
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
-
-    db.user.insert_one({'id': id_receive, 'pw': pw_hash})
-
+    existUser = db.user.find_one({'id':id_receive})
+    print(existUser)
+    #아이디 여부 확인
+    if existUser is not None:
+        return({'result':'fail'})
+    else:
+        db.user.insert_one({'id': id_receive, 'pw': pw_hash})
     return jsonify({'result': 'success'})
 
 
@@ -143,6 +148,12 @@ def profile_post():
     
     return jsonify({'msg':'프로필이 등록되었습니다.'})
 
+@app.route("/profileCheck/<userId>", methods=["GET"])
+def profile_check(userId):
+    print(userId)
+    profile_result = db.profile.find_one({'userid':userId})
+    return jsonify({'result':profile_result})
+
 # 프로필 조회
 @app.route("/profile/<userId>", methods=["GET"])
 def profile_get(userId):
@@ -157,6 +168,7 @@ def profile_get(userId):
                            mbti=profile_result['mbti'],
                            image=profile_result['image']
                            )
+
 
 @app.route("/profile/all", methods=["GET"])
 def profile_get_all():
