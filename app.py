@@ -118,7 +118,6 @@ def registerpage():
     return render_template('register.html')
 
 # 프로필 등록
-# @app.route("/profile/<string:userId>", methods=['POST'])
 @app.route("/profile", methods=["POST"])
 def profile_post():
     userid_receive = request.form['userid_give']
@@ -144,8 +143,22 @@ def profile_post():
     
     return jsonify({'msg':'프로필이 등록되었습니다.'})
 
+# 프로필 조회
+@app.route("/profile/<userId>", methods=["GET"])
+def profile_get(userId):
+    profile_result = db.profile.find_one({'userid':userId})
+    # TODO - 방명록 가져오기
+    return render_template('detail.html', 
+                           profile_result=profile_result,
+                           name=profile_result['name'],
+                           field=profile_result['field'],
+                           github=profile_result['github'],
+                           blog=profile_result['blog'],
+                           mbti=profile_result['mbti']
+                           )
+
 @app.route("/profile/all", methods=["GET"])
-def profile_get():
+def profile_get_all():
     profile_data = list(db.profile.find({},{'_id':False}))
     return jsonify({'result':profile_data})
 
