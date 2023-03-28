@@ -23,6 +23,7 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
       * {
         box-sizing: border-box;
@@ -72,12 +73,37 @@
               // 이 토큰을 mytoken이라는 키 값으로 쿠키에 저장합니다.
               $.cookie("mytoken", response["token"]);
 
-              alert("로그인 완료!");
-              window.location.href = "/";
+              // alert("로그인 완료!");
+              Swal.fire(
+                '로그인 완료!',
+                'You clicked the button!',
+                'success'
+              )
+              Swal.fire({
+                icon: 'success',
+                title: '로그인 성공',
+                text: '로그인 성공',
+                confirmButtonText: '확인',
+              }).then(result => {
+                if(result.isConfirmed){
+                window.location.href = "/";
+                }
+              })
+              // window.location.href = "/";
             } else {
               // 로그인이 안되면 에러메시지를 띄웁니다.
-              alert(response['msg']);
-              window.location.href = "/signin";
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: response["msg"],
+                confirmButtonText: '확인',
+              }).then(result => {
+                if(result.isConfirmed){
+                window.location.href = "/signin";
+                }
+              })
+              // alert(response["msg"]);
+              
             }
           },
         });
