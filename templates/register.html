@@ -82,20 +82,6 @@
       let email = $('#email').val()
       let MBTI = $('#MBTI').val()
 
-      if(name=="") {
-        alert("이름을 입력해주세요.");
-        return;
-      }
-      if(field=="") {
-        alert("직무를 선택해주세요.");   // 작동안함..
-        return;
-      }
-      if(email=="") {
-        alert("이메일을 입력해주세요."); // 이름, 이메일은 작동함 but 이름 입력 안하면 입력해주세요 메세지창 뜬 후 기존 데이터도 사라짐
-        return;
-      }
-      
-      
       let formData = new FormData();
       formData.append("name_give", name);
       formData.append("field_give", field);
@@ -111,7 +97,6 @@
       });
       
     }
-
   </script>
 </head>
 
@@ -145,12 +130,8 @@
               <input type="text" class="form-control" id="name">
             </div>
             <div class="col-12">
-              <label for="inputState" class="form-label">field</label>
-              <select id="field" class="form-select">
-                <option selected>field...</option>
-                <option>Frontend</option>
-                <option>Backend</option>
-              </select>
+              <label for="inputPassword4" class="form-label">field</label>
+              <input type="text" class="form-control" id="field">
             </div>
             <div class="col-12">
               <label for="inputAddress" class="form-label">github</label>
@@ -187,8 +168,8 @@
               </select>
             </div>
             <div class="col-12">
-              <button onClick="save_profile()" type="submit" class="btn btn-primary">등록</button>
-              <button onClick="location.href='/'" type="button" class="btn btn-primary">다음에 등록</button>
+              <button onclick="save_profile()" type="submit" class="btn btn-primary">등록</button>
+              <button onclick="location.href='/'" type="button" class="btn btn-primary">다음에 등록</button>
             </div>
           </form>
         </div>
