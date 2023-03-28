@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,36 +18,88 @@
     * {
       box-sizing: border-box;
     }
+
     body {
       display: block;
     }
-  
+
     .profile {
       /* background-color: bisque; */
       justify-content: center;
       align-items: center;
     }
+
     .profile>.profile_body {
       /* background-color: palevioletred;       */
       align-items: center;
     }
+
     .upload_photo {
       /* background-color: red; */
       text-align: center;
-      margin:100px;
+      margin: 100px;
     }
+
     .form {
       /* background-color: skyblue; */
       align-items: center;
       justify-content: center;
     }
-    .upload_photo > .card-img-top{
+
+    .upload_photo>.card-img-top {
       width: 200px;
       height: 200px;
     }
   </style>
+  <script>
+
+    var userid
+    $(document).ready(function () {
+      valid().then((response) => {
+        userid = response['result']['id']
+        console.log(userid)
+      });
+    });
+
+    function valid() {
+      return fetch("/valid")
+        .then((res) => res.json())
+        .then((data) => {
+          return data;
+        });
+    }
+
+    function previewImage(event) {
+      var preview = document.getElementById("preview");
+      preview.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function save_profile() {
+      let name = $('#name').val()
+      let field = $('#field').val()
+      let github = $('#github').val()
+      let blog = $('#blog').val()
+      let email = $('#email').val()
+      let MBTI = $('#MBTI').val()
+
+      let formData = new FormData();
+      formData.append("name_give", name);
+      formData.append("field_give", field);
+      formData.append("github_give", github);
+      formData.append("blog_give", blog);
+      formData.append("email_give", email);
+      formData.append("MBTI_give", MBTI);
+      formData.append("userid_give", userid);
+
+      fetch('/profile', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+        alert(data['msg']);
+        window.location.href = "/";
+      });
+      
+    }
   </script>
 </head>
+
 <body>
   <div class="main">
     <div class="mainBtns">
@@ -64,67 +117,11 @@
       <div class="profile_body row">
         <div class="col-6">
           <form class="upload_photo">
-            <img
-              id="preview"
-              class="card-img-top"
-              src="#"
-              alt="미리보기"/> <br /><br />
+            <img id="preview" class="card-img-top" src="#" alt="미리보기" /> <br /><br />
             <label for="formFile" class="form-label">업로드 할 사진을 선택하세요.</label>
-            <input
-              class="form-control"
-              type="file"
-              id="formFile"
-              name="image"
-              onchange="previewImage(event)"/><br />
+            <input class="form-control" type="file" id="formFile" name="image" onchange="previewImage(event)" /><br />
           </form>
         </div>
-        <script>
-          
-          var userid
-          $(document).ready(function () {
-            valid().then((response) => {
-                userid = response['result']['id']
-                console.log(userid)
-            });
-          });
-
-          function valid() {
-            return fetch("/valid")
-              .then((res) => res.json())
-              .then((data) => {
-                return data;
-              });
-          }
-
-          function previewImage(event) {
-            var preview = document.getElementById("preview");
-            preview.src = URL.createObjectURL(event.target.files[0]);
-          }
-          
-          function save_profile() {
-            let name = $('#name').val()
-            let field = $('#field').val()
-            let github = $('#github').val()
-            let blog = $('#blog').val()
-            let email = $('#email').val()
-            let MBTI = $('#MBTI').val()
-
-            let formData = new FormData();
-            formData.append("name_give", name);
-            formData.append("field_give", field);
-            formData.append("github_give", github);
-            formData.append("blog_give", blog);
-            formData.append("email_give", email);
-            formData.append("MBTI_give", MBTI);
-            formData.append("userid_give", userid);
-            
-            fetch('/profile', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                alert(data["msg"]);
-                window.location.reload()
-            });
-
-          }
-        </script>
         <div class="form row col-6">
           <form class="row g-3">
             <legend>프로필 등록하기</legend>
@@ -178,5 +175,6 @@
         </div>
       </div>
     </div>
-  </body>
+</body>
+
 </html>
