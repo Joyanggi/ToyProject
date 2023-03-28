@@ -89,18 +89,20 @@
 				let blog = e['blog']
 				let email = e['email']
 				let mbti = e['mbti']
-
-				let temp_html = `<div class="col">
-									<div id="${userid}" class="card">
-									<img src="" alt="..." />
-									<div class="card-body">
-										<h5 class="card-title">${name}</h5>
-										<p class="card-text">직무 : ${field}</p>
-										<a class="card-text" href="${blog}">블로그 : ${blog}</a>
-										<p class="card-text">MBTI : ${mbti}</p>
-									</div>
-									</div>
-								</div>`
+        
+				let temp_html = `<a href="/profile/${userid}">
+                          <div class="col">
+                            <div id="${userid}" class="card">
+                            <img src="" alt="..." />
+                            <div class="card-body">
+                              <h5 class="card-title">${name}</h5>
+                              <p class="card-text">직무 : ${field}</p>
+                              <a class="card-text" href="${blog}">블로그 : ${blog}</a>
+                              <p class="card-text">MBTI : ${mbti}</p>
+                            </div>
+                            </div>
+                          </div>
+                        </a>`
 				$('#profile-box').append(temp_html)
 			})
 		})
