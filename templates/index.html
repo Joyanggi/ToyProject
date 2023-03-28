@@ -60,13 +60,13 @@
   </style>
   <script>
     $(document).ready(function () {
+      show_profile()
       valid().then((response) => {
         console.log(response)
         response['result'] == "fail" ?
         $('#signButton').css('display', 'block')
           : $('#signoutButton').css('display', 'block')
       });
-	  show_profile()
     });
     function valid() {
       return fetch("/valid")
@@ -91,19 +91,17 @@
 				let mbti = e['mbti']
         let image = e['image']
         
-				let temp_html = `<a href="/profile/${userid}">
-                          <div class="col">
-                            <div id="${userid}" class="card">
-                            <img src="${image}" alt="..." />
-                            <div class="card-body">
-                              <h5 class="card-title">${name}</h5>
-                              <p class="card-text">직무 : ${field}</p>
-                              <a class="card-text" href="${blog}">블로그 : ${blog}</a>
-                              <p class="card-text">MBTI : ${mbti}</p>
+				let temp_html = `<div onClick="location.href ='/profile/${userid}'" style="cursor:pointer;" class="col">
+                            <div class="card" style="padding:5px">
+                              <img src="${image}"/>
+                              <div class="card-body">
+                                <h5 class="card-title">${name}</h5>
+                                <p class="card-text">직무 : ${field}</p>
+                                <a class="card-text" href="${blog}">블로그 : ${blog}</a>
+                                <p class="card-text">mbti : ${mbti}</p>
+                              </div>
                             </div>
-                            </div>
-                          </div>
-                        </a>`
+                          </div>`
 				$('#profile-box').append(temp_html)
 			})
 		})
