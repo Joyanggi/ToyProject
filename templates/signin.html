@@ -54,7 +54,7 @@
     <script>
       // {% if msg %}
       // alert("{{ msg }}")
-      // {% endif %} 검색해보
+      // {% endif %} 왜 있는지 모르는 부분입니다. 검색해봐야 할 것 같아요.
 
       // ['쿠키'라는 개념에 대해 알아봅시다]
       // 로그인을 구현하면, 반드시 쿠키라는 개념을 사용합니다.
@@ -76,8 +76,8 @@
               window.location.href = "/";
             } else {
               // 로그인이 안되면 에러메시지를 띄웁니다.
-              alert(response["msg"]); // login.py에서 msg : 다시 로그인 해주세요 설정하기
-              window.location.href = "/login";
+              alert(response["msg"]);
+              window.location.href = "/signin";
             }
           },
         });
@@ -106,7 +106,7 @@
           <div class="col" style="margin: 25px 50px 10px 50px">
             <p>비밀번호</p>
             <input
-              type="text"
+              type="password"
               class="form-control"
               id="userpw"
               placeholder="숫자, 영문, 특수문자 조합 최소 8자"
