@@ -54,7 +54,18 @@
         object-fit: cover;
       }
     </style>
-    <script></script>
+    <script>
+      $(document).ready(function () {
+        valid();
+      });
+      function valid() {
+        fetch("/valid")
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+      }
+    </script>
   </head>
   <body>
     <div class="main">
