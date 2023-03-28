@@ -128,7 +128,7 @@ def profile_post():
     blog_receive = request.form['blog_give']
     email_receive = request.form['email_give']
     mbti_receive = request.form['MBTI_give']
-    # image_receive = request.form['image_give']
+    image_receive = request.form['image_give']
 
     doc = {
         'userid':userid_receive,
@@ -137,8 +137,8 @@ def profile_post():
         'github':github_receive,
         'blog':blog_receive,
         'email':email_receive,
-        'mbti':mbti_receive
-        # 'image':image_receive
+        'mbti':mbti_receive,
+        'image':image_receive
     }
     db.profile.insert_one(doc)
     
