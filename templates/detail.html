@@ -201,7 +201,7 @@
 
             fetch('/comment/write', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
                 alert(data['msg']);
-                window.location.href = "/profile/<userId>";
+                window.location.href = "/profile/" + profileId;
             });
         }
     </script>
@@ -428,7 +428,7 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">받는 사람:</label>
+                            <label for="recipient-name" class="col-form-label">받는 사람 아이디:</label>
                             <input type="text" class="form-control" id="recipient-name" value="{{profileId}}" disabled>
                         </div>
                         <div class="mb-3">
