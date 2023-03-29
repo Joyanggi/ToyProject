@@ -196,14 +196,15 @@ def comment_write():
     comment_write = db.comments.insert_one(doc)
     return jsonify({'msg':'방명록이 등록되었습니다.'})
 
-@app.route("/comments/all", methods=["GET"])
-def comments_get_all():
-    comments_data = list(db.comments.find({},{'_id':False}))
-    return jsonify({'result':comments_data})
+# @app.route("/comments/all", methods=["GET"])
+# def comments_get_all():
+#     comments_data = list(db.comments.find({},{'_id':False}))
+#     return jsonify({'result':comments_data})
 
-# @app.route("/comments/all/<profileId>", methods=["GET"])
-# def comments_get_all(profileId):
-#     comments_data = list(db.comments.find({'profileId':profileId},{'_id':False}))
+@app.route("/comments/all/<profileId>", methods=["GET"])
+def comments_get_all(profileId):
+    comments_data = list(db.comments.find({'profileId':profileId},{'_id':False}))
+    return jsonify({'result':comments_data})
 
 #프로필 수정
 @app.route('/profile/<userId>/update')
@@ -243,13 +244,16 @@ def profile_update(userId):
 @app.route("/writerProfile/<writerId>", methods=["GET"])
 def writerProfile_get(writerId):
     profile_result = db.profile.find_one({'userid':writerId},{'_id':False})
-    name = profile_result['name']
-    image = profile_result['image']
-    doc = {
-        'name':name,
-        'image':image
-    }
-    return jsonify({'result':doc})
+    if profile_result is not None:
+        name = profile_result['name']
+        image = profile_result['image']
+        doc = {
+            'name':name,
+            'image':image
+        }
+        return jsonify({'result':doc})
+    else:
+        return jsonify({'result':'결과없음'})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
