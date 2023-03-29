@@ -45,7 +45,6 @@ def valid_user():
         # token을 시크릿키로 디코딩합니다.
         # 보실 수 있도록 payload를 print 해두었습니다. 우리가 로그인 시 넣은 그 payload와 같은 것이 나옵니다.
         payload = jwt.decode(token_receive, SECRET_KEY, algorithms=['HS256'])
-        print(payload)
 
         # payload 안에 id가 들어있습니다. 이 id로 유저정보를 찾습니다.
         # 여기에선 그 예로 닉네임을 보내주겠습니다.
@@ -75,7 +74,6 @@ def signup():
     
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
     existUser = db.user.find_one({'id':id_receive})
-    print(existUser)
     #아이디 여부 확인
     if existUser is not None:
         return({'result':'fail'})
@@ -91,7 +89,6 @@ def signin():
 
     # 회원가입 때와 같은 방법으로 pw를 암호화합니다.
     pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
-    print(pw_hash)
     # id, 암호화된pw을 가지고 해당 유저를 찾습니다.
     result = db.user.find_one({'id': id_receive, 'pw': pw_hash})
     
@@ -151,9 +148,7 @@ def profile_post():
 @app.route("/profileCheck", methods=['GET'])
 def profile_check():
     userid_receive = request.args.get('userId')
-    print(userid_receive)
     result = db.profile.find_one({'userid':userid_receive},{'_id':False})
-    print(result)
     return jsonify({'result':result})
 
 # 프로필 조회
