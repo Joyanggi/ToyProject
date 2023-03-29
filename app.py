@@ -167,6 +167,15 @@ def profile_get(userId):
                            image=profile_result['image']
                            )
 
+# 프로필 삭제
+@app.route("/profile/delete", methods=["POST"])
+def profile_delete():
+    userid_receive = request.form['id_give']
+    
+    db.profile.delete_one({'userid':userid_receive})
+    
+    return jsonify({'msg':'프로필이 삭제되었습니다.'})
+
 
 @app.route("/profile/all", methods=["GET"])
 def profile_get_all():

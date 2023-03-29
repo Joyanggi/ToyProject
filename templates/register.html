@@ -69,19 +69,17 @@
         });
     }
 
-    function previewImage(event) {
-      var preview = document.getElementById("preview");
-      preview.src = URL.createObjectURL(event.target.files[0]);
-    }
     var base64
     const uploadProfile = async (e) => {
       const file = (e.target.files)[0];
 
       base64 = await convertBase64(file);
+      var preview = document.getElementById("preview");
+      preview.src = URL.createObjectURL(file);
     }
-    
+
     const convertBase64 = (file) => {
-      return new Promise((resolve,rejects) => {
+      return new Promise((resolve, rejects) => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
 
@@ -94,7 +92,7 @@
         })
       })
     }
-    
+
     function save_profile() {
       let name = $('#name').val()
       let field = $('#field').val()
@@ -115,7 +113,7 @@
       //   alert("이메일을 입력해주세요."); // 이름, 이메일은 작동함 but 이름 입력 안하면 입력해주세요 메세지창 뜬 후 기존 데이터도 사라짐
       //   return;
       // }
-      
+
       let formData = new FormData();
       formData.append("name_give", name);
       formData.append("field_give", field);
@@ -130,7 +128,7 @@
         alert(data['msg']);
         window.location.href = "/";
       });
-      
+
     }
   </script>
 </head>
