@@ -158,6 +158,7 @@ def profile_get(userId):
     # TODO - 방명록 가져오기
     return render_template('detail.html', 
                            profile_result=profile_result,
+                           profileId=userId,
                            name=profile_result['name'],
                            field=profile_result['field'],
                            github=profile_result['github'],
