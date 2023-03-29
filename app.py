@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 from pymongo import MongoClient
 import certifi
-
+from bson import ObjectId
 ca = certifi.where()
 
 client = MongoClient('mongodb+srv://sparta:test@cluster0.xxnpzo1.mongodb.net/?retryWrites=true&w=majority', tlsCAFile=ca)
@@ -172,22 +172,6 @@ def profile_get(userId):
                            image=profile_result['image']
                            )
 
-#프로필 수정
-@app.route('/profile/<userId>/update', methods=["GET"])
-def updatepage(userId):
-    profile_result = db.profile.find_one({'userid':userId})
-    return render_template('revise.html', 
-                           profile_result=profile_result,
-                           profileId=userId,
-                           name=profile_result['name'],
-                           field=profile_result['field'],
-                           github=profile_result['github'],
-                           blog=profile_result['blog'],
-                           mbti=profile_result['mbti'],
-                           image=profile_result['image'],
-                           email=profile_result['email']
-                           )
-
 # 프로필 삭제
 @app.route("/profile/delete", methods=["DELETE"])
 def profile_delete():
@@ -197,7 +181,7 @@ def profile_delete():
     
     return jsonify({'msg':'프로필이 삭제되었습니다.'})
 
-# 프로필 전체 조회
+
 @app.route("/profile/all", methods=["GET"])
 def profile_get_all():
     profile_data = list(db.profile.find({},{'_id':False}))
@@ -217,6 +201,16 @@ def comment_write():
     comment_write = db.comments.insert_one(doc)
     return jsonify({'result':'방명록이 등록되었습니다.'})
 
+# 방명록 삭제
+@app.route("/comment/delete", methods=["DELETE"])
+def comment_delete():
+    commentId_receive = request.form['commentId_give']
+    print(commentId_receive)
+    print(type(commentId_receive))
+    db.comments.delete_one({'_id':ObjectId(commentId_receive)})
+    
+    return jsonify({'msg':'방명록이 삭제되었습니다.'})
+
 # @app.route("/comments/all", methods=["GET"])
 # def comments_get_all():
 #     comments_data = list(db.comments.find({},{'_id':False}))
@@ -224,9 +218,26 @@ def comment_write():
 
 @app.route("/comments/all/<profileId>", methods=["GET"])
 def comments_get_all(profileId):
-    comments_data = list(db.comments.find({'profileId':profileId},{'_id':False}))
+    comments_data = list(db.comments.find({'profileId':profileId},{}))
+    for comment in comments_data:
+        comment['_id'] = str(comment['_id'])
     return jsonify({'result':comments_data})
 
+#프로필 수정
+@app.route('/profile/<userId>/update', methods=["GET"])
+def updatepage(userId):
+    profile_result = db.profile.find_one({'userid':userId})
+    return render_template('revise.html', 
+                           profile_result=profile_result,
+                           profileId=userId,
+                           name=profile_result['name'],
+                           field=profile_result['field'],
+                           github=profile_result['github'],
+                           blog=profile_result['blog'],
+                           mbti=profile_result['mbti'],
+                           image=profile_result['image'],
+                           email=profile_result['email']
+                           )
 
 #프로필 수정
 @app.route('/profile/<userId>/update', methods=["GET"])
