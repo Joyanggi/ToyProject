@@ -196,11 +196,21 @@ def comment_write():
     comment_write = db.comments.insert_one(doc)
     return jsonify({'msg':'방명록이 등록되었습니다.'})
 
-@app.route("/comments/all", methods=["GET"])
-def comments_get_all():
-    comments_data = list(db.comments.find({},{'_id':False}))
+@app.route("/comments/all/<profileId>", methods=["GET"])
+def comments_get_all(profileId):
+    comments_data = list(db.comments.find({'profileId':profileId},{'_id':False}))
     return jsonify({'result':comments_data})
 
+@app.route("/writerProfile/<writerId>", methods=["GET"])
+def writerProfile_get(writerId):
+    profile_result = db.profile.find_one({'userid':writerId},{'_id':False})
+    name = profile_result['name']
+    image = profile_result['image']
+    doc = {
+        'name':name,
+        'image':image
+    }
+    return jsonify({'result':doc})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)

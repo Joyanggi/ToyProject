@@ -18,10 +18,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        body {
-            /* background-color: rgb(238, 240, 243); */
-        }
-
         * {
             box-sizing: border-box;
         }
@@ -135,7 +131,8 @@
             max-height: 150px;
             overflow: scroll;
         }
-        .col-6{
+
+        .col-6 {
             border: none;
         }
     </style>
@@ -145,13 +142,14 @@
         $(document).ready(function () {
             valid().then((response) => {
                 writer_Id = response['result']['id']
-                
+
                 writer_Id == profile_Id ?
                     $('#editProfile').css('display', 'block')
                     : $('#editProfile').css('display', 'none')
-                
-                    console.log(writer_Id)
+
+                console.log(writer_Id)
             });
+            show_comments();
         });
 
         function valid() {
@@ -207,6 +205,55 @@
                 window.location.href = "/profile/" + profileId;
             });
         }
+
+        function show_comments() {
+            fetch('/comments/all/'+profile_Id).then((res) => res.json()).then((data) => {
+                let rows = data['result']
+                console.log(rows)
+                rows.forEach((e)=>{
+                    let writerProfileId = e['writerId']
+                    fetch('/writerProfile/'+writerProfileId).then((res) => res.json()).then((data) => {
+                        console.log(data)
+                    })
+                })
+                // $('#commentsArea').empty()
+                // rows.forEach((e) => {
+                //     let userid = e['userid']
+                //     let name = e['name']
+                //     let field = e['field']
+                    
+                //     let temp_html;
+                    
+                //         temp_html = `<div class="row" style="margin-top: 10px">
+                //                         <div class="col-12" style="width: 95%; margin: 0 auto">
+                //                             <div class="row">
+                //                                 <div class="col-2 userImgArea">
+
+                //                                 </div>
+                //                                 <div class="col-10 userNameArea">이름</div>
+                //                             </div>
+                //                         </div>
+                //                         <hr style="
+                //                     width: 95%;
+                //                     margin: 0 auto;
+                //                     margin-top: 20px;
+                //                     margin-bottom: 20px;
+                //                     " />
+                //                         <div class="col-12 userCommentArea" style="border: 1px solid black">
+                //                             <p>
+                //                                 ${commentText}
+                //                             </p>
+                //                         </div>
+                //                     </div>
+                //                 </div>`
+                            
+
+
+                //     $('#commentsArea').append(temp_html)
+                // })
+            })
+        }
+
     </script>
 </head>
 
@@ -220,7 +267,7 @@
         <div class="col-6 btn">
             <button type="button" class="btn btn-primary" onclick="logOutHandler()">로그아웃</button>
         </div>
-            
+
     </div>
     <!-- 최상단 로고, 회원관련 영역 끝-->
     <div class="row main">
@@ -285,7 +332,7 @@
     <!-- 편집버튼 영역 끝-->
     <div class="row main4">
         <!-- 방명록 영역 시작 -->
-        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+        <div class="col-12" id="commentsArea" style="margin-top: 10px; margin-bottom: 10px">
             <!-- 여기서부터 방명록 코드 반복시작-->
             <div class="row" style="margin-top: 10px">
                 <div class="col-12" style="width: 95%; margin: 0 auto">
