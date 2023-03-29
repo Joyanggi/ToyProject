@@ -164,14 +164,16 @@
                 type: "POST",
                 url: "/profile/delete",
                 data: {
-                    id_give: user_Id,
+                    id_give: writer_Id,
                 },
                 success: function (response) {
                     if (response["result"] == "success") {
                         alert(response['msg']);
                         window.location.href = "/";
                     } else {
+                        console.log(response) 
                         console.log("뭔가 뭔가임.")
+                        window.location.href = "/";
                     }
                 },
             });
