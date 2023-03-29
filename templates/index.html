@@ -13,9 +13,13 @@
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
     crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
+      font-family: 'Nanum Gothic', sans-serif;
     }
 
     .main {
@@ -138,7 +142,7 @@
                             <div class="card" style="padding:5px">
                               <img src="${image}"/>
                               <div class="card-body">
-                                <h5 class="card-title">${name}</h5>
+                                <h5 class="card-title" style="text-align:center; font-size:1.875rem">${name}</h5>
                                 <p class="card-text">직무 : ${field}</p>
                                 <a class="card-text" href="${blog}">블로그 : ${blog}</a>
                                 <p class="card-text">mbti : ${mbti}</p>
@@ -150,7 +154,7 @@
                             <div class="card" style="padding:5px">
                               <img src="${image}"/>
                               <div class="card-body">
-                                <h5 class="card-title">${name}</h5>
+                                <h5 class="card-title" style="text-align:center; font-size:1.875rem">${name}</h5>
                                 <p class="card-text">직무 : ${field}</p>
                                 <a class="card-text" href="${blog}">블로그 : ${blog}</a>
                                 <p class="card-text">mbti : ${mbti}</p>
