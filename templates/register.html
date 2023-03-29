@@ -58,6 +58,12 @@
       valid().then((response) => {
         userid = response['result']['id']
         console.log(userid)
+
+        if (response['result']['id'] != undefined){
+          profile_check(response['result']['id'])
+        } else { //비로그인 유저는 페이지 접속 불가
+          window.location.href = '/'
+        }
       });
     });
 
@@ -67,6 +73,26 @@
         .then((data) => {
           return data;
         });
+    }
+
+
+    function profile_check(userId) {
+      let userURL = '/profile/' + userId
+      $.ajax({
+        type: "GET",
+        url: "/profileCheck",
+        data: {
+          userId: userId
+        },
+        success: function (response) {
+          console.log(response['result'])
+          if (response['result'] != null) { //프로필 보유자는 detail 페이지로 이동
+            window.location.href = userURL.toString()
+          } else {
+            window.location.href = '/profile'
+          }
+        }
+      });
     }
 
     function previewImage(event) {
