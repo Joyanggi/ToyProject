@@ -172,6 +172,22 @@ def profile_get(userId):
                            image=profile_result['image']
                            )
 
+#프로필 수정
+@app.route('/profile/<userId>/update', methods=["GET"])
+def updatepage(userId):
+    profile_result = db.profile.find_one({'userid':userId})
+    return render_template('revise.html', 
+                           profile_result=profile_result,
+                           profileId=userId,
+                           name=profile_result['name'],
+                           field=profile_result['field'],
+                           github=profile_result['github'],
+                           blog=profile_result['blog'],
+                           mbti=profile_result['mbti'],
+                           image=profile_result['image'],
+                           email=profile_result['email']
+                           )
+
 # 프로필 삭제
 @app.route("/profile/delete", methods=["DELETE"])
 def profile_delete():
@@ -181,7 +197,7 @@ def profile_delete():
     
     return jsonify({'msg':'프로필이 삭제되었습니다.'})
 
-
+# 프로필 전체 조회
 @app.route("/profile/all", methods=["GET"])
 def profile_get_all():
     profile_data = list(db.profile.find({},{'_id':False}))
@@ -211,21 +227,6 @@ def comments_get_all(profileId):
     comments_data = list(db.comments.find({'profileId':profileId},{'_id':False}))
     return jsonify({'result':comments_data})
 
-#프로필 수정
-@app.route('/profile/<userId>/update', methods=["GET"])
-def updatepage(userId):
-    profile_result = db.profile.find_one({'userid':userId})
-    return render_template('revise.html', 
-                           profile_result=profile_result,
-                           profileId=userId,
-                           name=profile_result['name'],
-                           field=profile_result['field'],
-                           github=profile_result['github'],
-                           blog=profile_result['blog'],
-                           mbti=profile_result['mbti'],
-                           image=profile_result['image'],
-                           email=profile_result['email']
-                           )
 
 @app.route('/profile/<userId>/update', methods=["POST"])
 def profile_update(userId):
