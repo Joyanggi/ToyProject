@@ -241,7 +241,7 @@
                     rows.forEach((e) => {
                         let temp_html = "";
                         let commentId = e['_id']; // 방명록의 고유 아이디 -> 이걸 이용해서 삭제할거임
-                        let writerProfileId = e["writerId"];
+                        let writerProfileId = e["writerId"]; // 작성
                         fetch("/writerProfile/" + writerProfileId)
                             .then((res) => res.json())
                             .then((data) => {
@@ -249,7 +249,8 @@
                                 writerName = data["result"]["name"];
                                 writerImage = data["result"]["image"];
                                 commentText = e["commentText"];
-                                temp_html = `
+                                if(writer_Id===writerProfileId){
+                                  temp_html = `
                                 <div class="col-12" style="margin-top: 10px; margin-bottom: 10px; border:1px solid white; border-radius: 30px; box-shadow:2px 3px 4px 0px">
                                   <!-- 여기서부터 방명록 코드 반복시작-->
                                   <div class="row" style="margin-top: 10px; ">
@@ -283,6 +284,35 @@
                                     </div>
                                   </div>
                                 </div>`;
+                                }
+                                else{
+                                  temp_html = `
+                                <div class="col-12" style="margin-top: 10px; margin-bottom: 10px; border:1px solid white; border-radius: 30px; box-shadow:2px 3px 4px 0px">
+                                  <!-- 여기서부터 방명록 코드 반복시작-->
+                                  <div class="row" style="margin-top: 10px; ">
+                                    <div class="col-12" style="width: 95%; margin: 0 auto">
+                                      <div class="row">
+                                        <div class="col-2 userImgArea">
+                                          <img src="${writerImage}"/>
+                                          </div>
+                                        <div class="col-10 userNameArea">${writerName}</div>
+                                      </div>
+                                    </div>
+                                    <hr
+                                      style="
+                                        width: 95%;
+                                        margin: 0 auto;
+                                        margin-top: 20px;
+                                        margin-bottom: 20px;
+                                      "
+                                    />
+                                    <div class="col-12 userCommentArea">
+                                      <p>${commentText}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>`;
+                                }
                     $("#commentsArea").append(temp_html);
                   }
                 });
