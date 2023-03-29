@@ -168,7 +168,7 @@ def profile_get(userId):
                            )
 
 # 프로필 삭제
-@app.route("/profile/delete", methods=["POST"])
+@app.route("/profile/delete", methods=["DELETE"])
 def profile_delete():
     userid_receive = request.form['id_give']
     
