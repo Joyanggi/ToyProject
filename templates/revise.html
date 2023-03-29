@@ -92,14 +92,11 @@
       });
     }
 
-    function previewImage(event) {
-      
-    }
     var base64
-    const uploadProfile = (e) => {
+    const uploadProfile = async (e) => {
       const file = (e.target.files)[0];
 
-      base64 = convertBase64(file);
+      base64 = await convertBase64(file);
       var preview = document.getElementById("preview");
       preview.src = URL.createObjectURL(file);
     }
