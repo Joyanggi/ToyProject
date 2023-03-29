@@ -177,7 +177,7 @@
 </head>
 
 <body>
-    <div id="result_info" style="display: none">"{{profile_result}}"</div>
+    <div id="result_info" >"{{profile_result}}"</div>
     <div class="row">
         <!-- 최상단 로고, 회원관련 영역 시작-->
         <div class="col-6 header">
@@ -399,7 +399,7 @@
                     <form>
                         <div class="mb-3">
                             <label for="recipient-name" class="col-form-label">받는 사람:</label>
-                            <input type="text" class="form-control" id="recipient-name" value="{{userId}}" disabled>
+                            <input type="text" class="form-control" id="recipient-name" value="{{userid}}" disabled>
                         </div>
                         <div class="mb-3">
                             <label for="message-text" class="col-form-label">방명록 글:</label>
@@ -409,7 +409,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary">작성하기</button>
+                    <button type="button" class="btn btn-primary" onClick="commentWrite()">작성하기</button>
                 </div>
             </div>
         </div>

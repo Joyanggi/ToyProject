@@ -172,18 +172,21 @@ def profile_get_all():
     profile_data = list(db.profile.find({},{'_id':False}))
     return jsonify({'result':profile_data})
 
-# @app.route("/comment/write", methods=["POST"])
-# def comment_write():
-#     profileId_receive = request.form['profileId_give']
-#     writerId_receive = request.form['writerId_give']
-#     commentText_receive = request.form['commentText_give']
-#     doc = {
-#         'profileId':profileId_receive,
-#         'writerId':writerId_receive,
-#         'commentText':commentText_receive
-#     }
-#     comment_write = db.comments.insert_one(doc)
-#     return jsonify({'result':'방명록이 등록되었습니다.'})
+@app.route("/comment/write", methods=["POST"])
+def comment_write():
+    profileId_receive = request.form['profileId_give']
+    writerId_receive = request.form['writerId_give']
+    commentText_receive = request.form['commentText_give']
+    doc = {
+        'profileId':profileId_receive,
+        'writerId':writerId_receive,
+        'commentText':commentText_receive
+    }
+    print(doc)
+    comment_write = db.comments.insert_one(doc)
+    return jsonify({'result':'방명록이 등록되었습니다.'})
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
