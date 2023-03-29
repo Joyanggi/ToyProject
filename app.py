@@ -194,62 +194,9 @@ def comment_write():
     }
     print(doc)
     comment_write = db.comments.insert_one(doc)
-    return jsonify({'msg':'방명록이 등록되었습니다.'})
+    return jsonify({'result':'방명록이 등록되었습니다.'})
 
-@app.route("/comments/all", methods=["GET"])
-def comments_get_all():
-    comments_data = list(db.comments.find({},{'_id':False}))
-    return jsonify({'result':comments_data})
 
-# @app.route("/comments/all/<profileId>", methods=["GET"])
-# def comments_get_all(profileId):
-#     comments_data = list(db.comments.find({'profileId':profileId},{'_id':False}))
-
-#프로필 수정
-@app.route('/profile/<userId>/update')
-def updatepage(userId):
-    return render_template('revise.html')
-
-@app.route('/profile/<userId>/update', methods=["POST"])
-def profile_update(userId):
-    userid_receive = request.form['userid_give']
-    name_receive = request.form['name_give']
-    field_receive = request.form['field_give']
-    github_receive = request.form['github_give']
-    blog_receive = request.form['blog_give']
-    email_receive = request.form['email_give']
-    mbti_receive = request.form['MBTI_give']
-    image_receive = request.form['image_give']
-    # doc = {
-    #     'userid':userid_receive,
-    #     'name':name_receive,
-    #     'field':field_receive,
-    #     'github':github_receive,
-    #     'blog':blog_receive,
-    #     'email':email_receive,
-    #     'mbti':mbti_receive,
-    #     'image':image_receive
-    # }
-    db.profile.update_one({'userid':userid_receive},{'$set':{'name':name_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'field': field_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'github': github_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'blog': blog_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'email': email_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'mbti': mbti_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'image': image_receive}})
-    print("ㅎㅇ!")
-    return jsonify({'msg':'프로필이 수정되었습니다.'})
-
-@app.route("/writerProfile/<writerId>", methods=["GET"])
-def writerProfile_get(writerId):
-    profile_result = db.profile.find_one({'userid':writerId},{'_id':False})
-    name = profile_result['name']
-    image = profile_result['image']
-    doc = {
-        'name':name,
-        'image':image
-    }
-    return jsonify({'result':doc})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
