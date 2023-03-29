@@ -196,9 +196,15 @@ def comment_write():
     comment_write = db.comments.insert_one(doc)
     return jsonify({'msg':'방명록이 등록되었습니다.'})
 
-@app.route("/comments/all/<profileId>", methods=["GET"])
-def comments_get_all(profileId):
-    comments_data = list(db.comments.find({'profileId':profileId},{'_id':False}))
+@app.route("/comments/all", methods=["GET"])
+def comments_get_all():
+    comments_data = list(db.comments.find({},{'_id':False}))
+    return jsonify({'result':comments_data})
+
+# @app.route("/comments/all/<profileId>", methods=["GET"])
+# def comments_get_all(profileId):
+#     comments_data = list(db.comments.find({'profileId':profileId},{'_id':False}))
+
 #프로필 수정
 @app.route('/profile/<userId>/update')
 def updatepage(userId):
@@ -233,11 +239,6 @@ def profile_update(userId):
     db.profile.update_one({'userid':userid_receive},{"$set": {'image': image_receive}})
     print("ㅎㅇ!")
     return jsonify({'msg':'프로필이 수정되었습니다.'})
-
-@app.route("/comments/all", methods=["GET"])
-def comments_get_all():
-    comments_data = list(db.comments.find({},{'_id':False}))
-    return jsonify({'result':comments_data})
 
 @app.route("/writerProfile/<writerId>", methods=["GET"])
 def writerProfile_get(writerId):

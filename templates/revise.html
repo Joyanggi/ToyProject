@@ -58,6 +58,12 @@
       valid().then((response) => {
         userid = response['result']['id']
         console.log(userid)
+
+        if (response['result']['id'] != undefined) {
+          profile_check(response['result']['id'])
+        } else { //비로그인 유저는 페이지 접속 불가
+          window.location.href = '/'
+        }
       });
     });
 
@@ -69,19 +75,37 @@
         });
     }
 
+    function profile_check(userId) {
+      let userURL = '/profile/' + userId
+      $.ajax({
+        type: "GET",
+        url: "/profileCheck",
+        data: {
+          userId: userId
+        },
+        success: function (response) {
+          console.log(response['result'])
+          if (edited && response['result'] != null) { //프로필 보유자는 detail 페이지로 이동
+            window.location.href = userURL.toString()
+          }
+        }
+      });
+    }
+
     function previewImage(event) {
-      var preview = document.getElementById("preview");
-      preview.src = URL.createObjectURL(event.target.files[0]);
+      
     }
     var base64
-    const uploadProfile = async (e) => {
+    const uploadProfile = (e) => {
       const file = (e.target.files)[0];
 
-      base64 = await convertBase64(file);
+      base64 = convertBase64(file);
+      var preview = document.getElementById("preview");
+      preview.src = URL.createObjectURL(file);
     }
-    
+
     const convertBase64 = (file) => {
-      return new Promise((resolve,rejects) => {
+      return new Promise((resolve, rejects) => {
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
 
@@ -94,7 +118,7 @@
         })
       })
     }
-    
+
     function update_profile() {
       let name = $('#name').val()
       let field = $('#field').val()
@@ -102,7 +126,7 @@
       let blog = $('#blog').val()
       let email = $('#email').val()
       let MBTI = $('#MBTI').val()
-      let image = base64 
+      let image = base64
       
       let formData = new FormData();
       formData.append("name_give", name);
@@ -114,11 +138,13 @@
       formData.append("userid_give", userid);
       formData.append("image_give", image);
 
+      
+
       fetch('/profile/<userid>/update', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
         alert(data['msg']);
         window.location.href = "/";
       });
-      
+
     }
   </script>
 </head>
@@ -195,7 +221,7 @@
               </select>
             </div>
             <div class="col-12">
-              <button onclick="update_profile()" type="submit" class="btn btn-primary">편집</button> 
+              <button onclick="update_profile()" type="submit" class="btn btn-primary">편집</button>
             </div>
           </form>
         </div>
