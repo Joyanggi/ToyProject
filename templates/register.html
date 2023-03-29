@@ -59,11 +59,11 @@
         userid = response['result']['id']
         // console.log(userid)
 
-        // if (response['result']['id'] != undefined){
-        //   profile_check(response['result']['id'])
-        // } else { //비로그인 유저는 페이지 접속 불가
-        //   window.location.href = '/'
-        // }
+        if (response['result']['id'] != undefined){
+          profile_check(response['result']['id'])
+        } else { //비로그인 유저는 페이지 접속 불가
+          window.location.href = '/'
+        }
       });
     });
 
@@ -147,8 +147,11 @@
           image_give: image
         }),
       })
-      console.log("----------------------------------------")
-      alert(response)
+      .then((res) => res.json())
+      .then((data) => {
+        alert(data['msg'])
+        window.location.href = '/'
+      });
 
     }
   </script>

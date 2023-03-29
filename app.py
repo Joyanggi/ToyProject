@@ -144,11 +144,11 @@ def profile_post():
     existProfile = db.profile.find_one({'id':userid_receive})
     #프로필 여부 확인
     if existProfile is not None:
-        return({'result':'fail'})
+        return({'result':'fail', 'msg':'프로필 등록이 실패되었습니다. 관리자에게 문의 부탁드립니다.'})
     result = db.profile.insert_one(doc)
     if result is None:
-        return({'result':'fail'})
-    return jsonify({'msg':'프로필이 등록되었습니다.'})
+        return({'result':'fail', 'msg':'프로필 등록이 실패되었습니다. 관리자에게 문의 부탁드립니다.'})
+    return jsonify({'result':'success', 'msg':'프로필이 등록되었습니다.'})
 
 @app.route("/profileCheck", methods=['GET'])
 def profile_check():
