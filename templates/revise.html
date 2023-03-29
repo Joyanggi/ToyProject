@@ -95,7 +95,7 @@
       })
     }
     
-    function save_profile() {
+    function update_profile() {
       let name = $('#name').val()
       let field = $('#field').val()
       let github = $('#github').val()
@@ -114,7 +114,7 @@
       formData.append("userid_give", userid);
       formData.append("image_give", image);
 
-      fetch('/profile', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+      fetch('/profile/<userid>/update', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
         alert(data['msg']);
         window.location.href = "/";
       });
@@ -195,8 +195,7 @@
               </select>
             </div>
             <div class="col-12">
-              <button onclick="save_profile()" type="submit" class="btn btn-primary">편집</button>
-              <button onclick="location.href='/'" type="button" class="btn btn-primary">다음에 편집</button>
+              <button onclick="update_profile()" type="submit" class="btn btn-primary">편집</button> 
             </div>
           </form>
         </div>
