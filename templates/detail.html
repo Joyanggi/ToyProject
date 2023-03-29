@@ -135,6 +135,9 @@
             max-height: 150px;
             overflow: scroll;
         }
+        .col-6{
+            border: none;
+        }
     </style>
     <script>
         let writer_Id
@@ -211,17 +214,13 @@
     <div id="result_profileId" style="display: none">"{{profileId}}"</div>
     <div class="row">
         <!-- 최상단 로고, 회원관련 영역 시작-->
-        <div class="col-6 header">
+        <div class="col-6 header" id="profile-head">
             <img src="/static/images/IMG_7217.png" onClick="location.href='/'" />
         </div>
-        <div class="col-6 btn" id="buttons">
-            <!-- <button type="button" class="btn btn-primary" onClick="location.href='/profile'">
-                ?프로필수정?
-            </button> -->
-            <button type="button" class="btn btn-primary" onClick="logOutHandler()">
-                로그아웃
-            </button>
+        <div class="col-6 btn">
+            <button type="button" class="btn btn-primary" onclick="logOutHandler()">로그아웃</button>
         </div>
+            
     </div>
     <!-- 최상단 로고, 회원관련 영역 끝-->
     <div class="row main">
