@@ -240,10 +240,11 @@ def updatepage(userId):
                            )
 
 #프로필 수정
-@app.route('/profile/<userId>/update', methods=["GET"])
-def updatepage(userId):
-    profile_result = db.profile.find_one({'userid':userId})
-    return render_template('revise.html', 
+@app.route('/profile/<userId>/update', methods=["GET","POST"])
+def profile_update(userId):
+    if request.method == "GET":
+        profile_result = db.profile.find_one({'userid':userId})
+        return render_template('revise.html', 
                            profile_result=profile_result,
                            profileId=userId,
                            name=profile_result['name'],
@@ -254,30 +255,27 @@ def updatepage(userId):
                            image=profile_result['image'],
                            email=profile_result['email'],
                            field_value=profile_result.get('field', ''),
-                           mbti_value=profile_result.get('mbti', '')
-                           )
+                           mbti_value=profile_result.get('mbti', ''))                           
 
+    else :
+        userid_receive = request.get_json()['userid_give']
+        name_receive = request.get_json()['name_give']
+        field_receive = request.get_json()['field_give']
+        github_receive = request.get_json()['github_give']
+        blog_receive = request.get_json()['blog_give']
+        email_receive = request.get_json()['email_give']
+        mbti_receive = request.get_json()['MBTI_give']
+        image_receive = request.get_json()['image_give']
 
-@app.route('/profile/<userId>/update', methods=["POST"])
-def profile_update(userId):
-    userid_receive = request.get_json()['userid_give']
-    name_receive = request.get_json()['name_give']
-    field_receive = request.get_json()['field_give']
-    github_receive = request.get_json()['github_give']
-    blog_receive = request.get_json()['blog_give']
-    email_receive = request.get_json()['email_give']
-    mbti_receive = request.get_json()['MBTI_give']
-    image_receive = request.get_json()['image_give']
-
-    db.profile.update_one({'userid':userid_receive},{"$set": {'name': name_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'field': field_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'github': github_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'blog': blog_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'email': email_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'mbti': mbti_receive}})
-    db.profile.update_one({'userid':userid_receive},{"$set": {'image': image_receive}})
-    return jsonify({'msg':'프로필이 수정되었습니다.'})
-    
+        db.profile.update_one({'userid':userid_receive},{"$set": {'name': name_receive}})
+        db.profile.update_one({'userid':userid_receive},{"$set": {'field': field_receive}})
+        db.profile.update_one({'userid':userid_receive},{"$set": {'github': github_receive}})
+        db.profile.update_one({'userid':userid_receive},{"$set": {'blog': blog_receive}})
+        db.profile.update_one({'userid':userid_receive},{"$set": {'email': email_receive}})
+        db.profile.update_one({'userid':userid_receive},{"$set": {'mbti': mbti_receive}})
+        db.profile.update_one({'userid':userid_receive},{"$set": {'image': image_receive}})
+        return jsonify({'msg':'프로필이 수정되었습니다.'})
+        
 
 @app.route("/writerProfile/<writerId>", methods=["GET"])
 def writerProfile_get(writerId):
