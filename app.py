@@ -141,8 +141,13 @@ def profile_post():
         'mbti':mbti_receive,
         'image':image_receive
     }
-    db.profile.insert_one(doc)
-    
+    existProfile = db.profile.find_one({'id':userid_receive})
+    #프로필 여부 확인
+    if existProfile is not None:
+        return({'result':'fail'})
+    result = db.profile.insert_one(doc)
+    if result is not None:
+        return({'result':'fail'})
     return jsonify({'msg':'프로필이 등록되었습니다.'})
 
 @app.route("/profileCheck", methods=['GET'])
