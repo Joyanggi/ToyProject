@@ -162,13 +162,13 @@
 
         function delete_profile() {
             $.ajax({
-                type: "POST",
+                type: "DELETE",
                 url: "/profile/delete",
                 data: {
-                    id_give: user_Id,
+                    id_give: writer_Id
                 },
                 success: function (response) {
-                    if (response["result"] == "success") {
+                    if (response['msg'] != null) {
                         alert(response['msg']);
                         window.location.href = "/";
                     } else {
