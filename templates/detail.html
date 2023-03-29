@@ -67,6 +67,7 @@
             /* 메인 프로필 이미지 관련 css */
             margin: 0 auto;
 
+
         }
 
         .nameArea {
@@ -137,10 +138,16 @@
     </style>
     <script>
         let writer_Id
+        let profile_Id = document.location.href.split("/")[4];
         $(document).ready(function () {
             valid().then((response) => {
                 writer_Id = response['result']['id']
-                console.log(writer_Id)
+                
+                writer_Id == profile_Id ?
+                    $('#editProfile').css('display', 'block')
+                    : $('#editProfile').css('display', 'none')
+                
+                    console.log(writer_Id)
             });
         });
 
@@ -152,6 +159,30 @@
                 });
         }
 
+        function delete_profile() {
+            $.ajax({
+                type: "POST",
+                url: "/profile/delete",
+                data: {
+                    id_give: user_Id,
+                },
+                success: function (response) {
+                    if (response["result"] == "success") {
+                        alert(response['msg']);
+                        window.location.href = "/";
+                    } else {
+                        console.log("뭔가 뭔가임.")
+                    }
+                },
+            });
+        }
+
+        // function profile() {
+        //     fetch("/profile/<userId>").then((res) => res.json()).then((data) => {
+        //         let rows = data['result']
+        //         console.log(rows)
+        //     });
+        // }
         function logOutHandler() {
             document.cookie =
                 "mytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -210,10 +241,9 @@
     <hr style="width: 95%; margin: 0 auto; margin-top: 20px; margin-bottom: 20px" />
     <div class="row main2">
         <!-- 편집버튼 영역 시작-->
-        <div class="col-12 editBtnArea">
+        <div class="col-12 editBtnArea" id="editProfile">
             <button type="button" class="btn btn-primary" onClick="location.href='/profile'">프로필 편집</button>
-            <button type="button" class="btn btn-outline-danger">프로필 삭제</button>
-
+            <button type="button" class="btn btn-outline-danger" onClick="delete_profile()">프로필 삭제</button>
         </div>
     </div>
     <!-- 편집버튼 영역 끝-->
