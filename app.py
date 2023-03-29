@@ -194,7 +194,7 @@ def comment_write():
     }
     print(doc)
     comment_write = db.comments.insert_one(doc)
-    return jsonify({'result':'방명록이 등록되었습니다.'})
+    return jsonify({'msg':'방명록이 등록되었습니다.'})
 
 #프로필 수정
 @app.route('/profile/<userId>/update')
@@ -231,6 +231,10 @@ def profile_update(userId):
     print("ㅎㅇ!")
     return jsonify({'msg':'프로필이 수정되었습니다.'})
 
+@app.route("/comments/all", methods=["GET"])
+def comments_get_all():
+    comments_data = list(db.comments.find({},{'_id':False}))
+    return jsonify({'result':comments_data})
 
 
 if __name__ == '__main__':
