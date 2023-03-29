@@ -122,14 +122,14 @@ def registerpage():
 # 프로필 등록
 @app.route("/profile", methods=["POST"])
 def profile_post():
-    userid_receive = request.form['userid_give']
-    name_receive = request.form['name_give']
-    field_receive = request.form['field_give']
-    github_receive = request.form['github_give']
-    blog_receive = request.form['blog_give']
-    email_receive = request.form['email_give']
-    mbti_receive = request.form['MBTI_give']
-    image_receive = request.form['image_give']
+    userid_receive = request.get_json()['userid_give']
+    name_receive = request.get_json()['name_give']
+    field_receive = request.get_json()['field_give']
+    github_receive = request.get_json()['github_give']
+    blog_receive = request.get_json()['blog_give']
+    email_receive = request.get_json()['email_give']
+    mbti_receive = request.get_json()['MBTI_give']
+    image_receive = request.get_json()['image_give']
 
     doc = {
         'userid':userid_receive,
@@ -144,11 +144,11 @@ def profile_post():
     existProfile = db.profile.find_one({'id':userid_receive})
     #프로필 여부 확인
     if existProfile is not None:
-        return({'result':'fail'})
+        return({'result':'fail', 'msg':'프로필 등록이 실패되었습니다. 관리자에게 문의 부탁드립니다.'})
     result = db.profile.insert_one(doc)
     if result is None:
-        return({'result':'fail'})
-    return jsonify({'msg':'프로필이 등록되었습니다.'})
+        return({'result':'fail', 'msg':'프로필 등록이 실패되었습니다. 관리자에게 문의 부탁드립니다.'})
+    return jsonify({'result':'success', 'msg':'프로필이 등록되었습니다.'})
 
 @app.route("/profileCheck", methods=['GET'])
 def profile_check():
@@ -229,14 +229,14 @@ def updatepage(userId):
 
 @app.route('/profile/<userId>/update', methods=["POST"])
 def profile_update(userId):
-    userid_receive = request.form['userid_give']
-    name_receive = request.form['name_give']
-    field_receive = request.form['field_give']
-    github_receive = request.form['github_give']
-    blog_receive = request.form['blog_give']
-    email_receive = request.form['email_give']
-    mbti_receive = request.form['MBTI_give']
-    image_receive = request.form['image_give']
+    userid_receive = request.get_json()['userid_give']
+    name_receive = request.get_json()['name_give']
+    field_receive = request.get_json()['field_give']
+    github_receive = request.get_json()['github_give']
+    blog_receive = request.get_json()['blog_give']
+    email_receive = request.get_json()['email_give']
+    mbti_receive = request.get_json()['MBTI_give']
+    image_receive = request.get_json()['image_give']
 
     db.profile.update_one({'userid':userid_receive},{"$set": {'name': name_receive}})
     db.profile.update_one({'userid':userid_receive},{"$set": {'field': field_receive}})
