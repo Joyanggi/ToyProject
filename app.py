@@ -229,14 +229,14 @@ def updatepage(userId):
 
 @app.route('/profile/<userId>/update', methods=["POST"])
 def profile_update(userId):
-    userid_receive = request.form['userid_give']
-    name_receive = request.form['name_give']
-    field_receive = request.form['field_give']
-    github_receive = request.form['github_give']
-    blog_receive = request.form['blog_give']
-    email_receive = request.form['email_give']
-    mbti_receive = request.form['MBTI_give']
-    image_receive = request.form['image_give']
+    userid_receive = request.get_json()['userid_give']
+    name_receive = request.get_json()['name_give']
+    field_receive = request.get_json()['field_give']
+    github_receive = request.get_json()['github_give']
+    blog_receive = request.get_json()['blog_give']
+    email_receive = request.get_json()['email_give']
+    mbti_receive = request.get_json()['MBTI_give']
+    image_receive = request.get_json()['image_give']
 
     db.profile.update_one({'userid':userid_receive},{"$set": {'name': name_receive}})
     db.profile.update_one({'userid':userid_receive},{"$set": {'field': field_receive}})

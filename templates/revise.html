@@ -85,7 +85,7 @@
         },
         success: function (response) {
           console.log(response['result'])
-          if (response['result'] == null) { //프로필 보유자는 update 페이지로 이동
+          if (response['result'] == null) { //프로필 미보유자는 홈으로 이동
             window.location.href = '/'
           }
         }
@@ -117,7 +117,7 @@
       })
     }
 
-    function update_profile() {
+    async function update_profile() {
       if(!img_uploaded) {
         base64 = document.getElementById("preview").getAttribute("src")
       }
@@ -129,19 +129,26 @@
       let MBTI = $('#MBTI').val()
       let image = base64
 
-      let formData = new FormData();
-      formData.append("name_give", name);
-      formData.append("field_give", field);
-      formData.append("github_give", github);
-      formData.append("blog_give", blog);
-      formData.append("email_give", email);
-      formData.append("MBTI_give", MBTI);
-      formData.append("userid_give", userid);
-      formData.append("image_give", image);
-
-      fetch('/profile/<userId>/update', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-        alert(data['msg']);
-        window.location.href = "/";
+      const response = await fetch("/profile/<userId>/update", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name_give: name,
+          field_give: field,
+          github_give: github,
+          blog_give: blog,
+          email_give: email,
+          MBTI_give: MBTI,
+          userid_give: userid,
+          image_give: image
+        }),
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        alert(data['msg'])
+        window.location.href = '/'
       });
 
     }
@@ -171,7 +178,7 @@
           </form>
         </div>
         <div class="form row col-6">
-          <form class="row g-3">
+          <div class="row g-3">
             <legend>프로필 편집하기</legend>
             <div class="col-12">
               <label for="{{name_for_label}}" class="form-label">name</label>
@@ -220,9 +227,9 @@
               </select>
             </div>
             <div class="col-12">
-              <button onclick="update_profile()" type="submit" class="btn btn-primary">편집</button>
+              <button onclick="update_profile()" class="btn btn-primary">편집</button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
