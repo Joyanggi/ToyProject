@@ -223,7 +223,7 @@
         fetch("/comment/write", { method: "POST", body: formData })
           .then((res) => res.json())
           .then((data) => {
-            alert(data["msg"]);
+            alert(data["result"]);
             window.location.href = "/profile/" + profileId;
           });
       }
