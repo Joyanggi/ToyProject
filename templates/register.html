@@ -59,7 +59,7 @@
         userid = response['result']['id']
         console.log(userid)
 
-        if (response['result']['id'] != undefined){
+        if (response['result']['id'] != undefined) {
           profile_check(response['result']['id'])
         } else { //비로그인 유저는 페이지 접속 불가
           window.location.href = '/'
@@ -94,7 +94,9 @@
     }
 
     var base64
+    var img_uploaded = false
     const uploadProfile = async (e) => {
+      img_uploaded = true
       const file = (e.target.files)[0];
 
       base64 = await convertBase64(file);
@@ -118,6 +120,9 @@
     }
 
     function save_profile() {
+      if (!img_uploaded) {
+        base64 = document.getElementById("preview").getAttribute("src")
+      }
       let name = $('#name').val()
       let field = $('#field').val()
       let github = $('#github').val()
@@ -174,7 +179,7 @@
       <div class="profile_body row">
         <div class="col-6">
           <form class="upload_photo">
-            <img id="preview" class="card-img-top" src="#" alt="미리보기" /> <br /><br />
+            <img id="preview" class="card-img-top" src="/static/images/default_profile.png" alt="미리보기" /> <br /><br />
             <label for="formFile" class="form-label">업로드 할 사진을 선택하세요.</label>
             <input class="form-control" type="file" id="formFile" name="image" onChange="uploadProfile(event)" /><br />
           </form>
