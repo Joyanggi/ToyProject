@@ -1,244 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.js"
-        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.js"
+      integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        .header>img {
-            /* 최상단 로고쪽 css */
-            max-width: 300px;
-            margin: 20px 20px 20px 20px;
-        }
+      .header > img {
+        /* 최상단 로고쪽 css */
+        max-width: 300px;
+        margin: 20px 20px 20px 20px;
+      }
 
-        .btn {
-            /* 최상단 회원버튼쪽 css */
-            text-align: right;
-        }
+      .btn {
+        /* 최상단 회원버튼쪽 css */
+        text-align: right;
+      }
 
-        .btn>button {
-            /* 최상단 회원버튼쪽 css */
-            margin: 20px 20px 20px 0px;
-        }
+      .btn > button {
+        /* 최상단 회원버튼쪽 css */
+        margin: 20px 20px 20px 0px;
+      }
 
-        .main {
-            /* 메인 프로필 관련 영역 css */
-            width: 95%;
-            margin: 0 auto;
-        }
+      .main {
+        /* 메인 프로필 관련 영역 css */
+        width: 95%;
+        margin: 0 auto;
+      }
 
-        .imageArea {
-            /* 메인 프로필 이미지 영역 css */
-            border: 1px solid black;
-            background-color: white;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            margin: 0 auto;
-            object-fit: cover;
-            overflow: hidden;
-            display: flex;
-            padding: 0px 0px 0px 0px;
-            text-align: center;
-            justify-content: center;
-        }
-
-        .imageArea>img {
-            /* 메인 프로필 이미지 관련 css */
-            margin: 0 auto;
-        
-
-
-        }
-
-        .nameArea {
-            /* 메인 프로필 이름 관련 css */
-            /* border: 1px solid black; */
-            font-size: 60px;
-            text-align: center;
-        }
-
-        .main2 {
-            /* 프로필 편집버튼 영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-            text-align: right;
-        }
-
-        .main3 {
-            /* 프로필 정보 영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-            font-size: 20px;
-        }
-
-        .main4 {
-            /* 방명록 영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-        }
-
-        .main4>.col-12 {
-            /* 방명록 영역별 관련 css */
-            /* border: 1px solid black; */
-            height: 300px;
-        }
-
-        .userImgArea {
-            /* 방명록 작성자 이미지영역 관련 css */
-            border: 1px solid black;
-            background-color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-            overflow: hidden;
-            display: flex;
+      .imageArea {
+        /* 메인 프로필 이미지 영역 css */
+        border: 1px solid black;
+        background-color: white;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        margin: 0 auto;
+        object-fit: cover;
+        overflow: hidden;
+        display: flex;
+        padding: 0px 0px 0px 0px;
+        text-align: center;
         justify-content: center;
-        }
+      }
 
-        .userImgArea>img {
-            /* 방명록 작성자 이미지 관련 css */
-            display: block;
-            margin: 0 auto;
-            height: 100%;
-        }
+      .imageArea > img {
+        /* 메인 프로필 이미지 관련 css */
+        margin: 0 auto;
+      }
 
-        .userNameArea {
-            /* 방명록 작성자 이름영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-            font-size: 30px;
-        }
+      .nameArea {
+        /* 메인 프로필 이름 관련 css */
+        /* border: 1px solid black; */
+        font-size: 60px;
+        text-align: center;
+      }
 
-        .userCommentArea {
-            /* 방명록 작성자 방명록영역 관련 css */
-            width: 95%;
-            margin: 0 auto;
-            max-height: 150px;
-            overflow: scroll;
-        }
+      .main2 {
+        /* 프로필 편집버튼 영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+        text-align: right;
+      }
 
-        .userCommentArea::-webkit-scrollbar {
-            display: none;
-        }
+      .main3 {
+        /* 프로필 정보 영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+        font-size: 20px;
+      }
 
-        .col-6 {
-            border: none;
-        }
-        .commentsArea{
-            border: none;
-        }
+      .main4 {
+        /* 방명록 영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+      }
+
+      .main4 > .col-12 {
+        /* 방명록 영역별 관련 css */
+        /* border: 1px solid black; */
+        height: 300px;
+      }
+
+      .userImgArea {
+        /* 방명록 작성자 이미지영역 관련 css */
+        border: 1px solid black;
+        background-color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+      }
+
+      .userImgArea > img {
+        /* 방명록 작성자 이미지 관련 css */
+        display: block;
+        margin: 0 auto;
+        height: 100%;
+      }
+
+      .userNameArea {
+        /* 방명록 작성자 이름영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+        font-size: 30px;
+      }
+
+      .userCommentArea {
+        /* 방명록 작성자 방명록영역 관련 css */
+        width: 95%;
+        margin: 0 auto;
+        max-height: 150px;
+        overflow: scroll;
+      }
+
+      .userCommentArea::-webkit-scrollbar {
+        display: none;
+      }
+
+      .col-6 {
+        border: none;
+      }
+      .commentsArea {
+        border: none;
+      }
     </style>
     <script>
-        let writer_Id
-        let profile_Id = document.location.href.split("/")[4];
-        $(document).ready(function () {
-            valid().then((response) => {
-                writer_Id = response['result']['id']
+      let writer_Id;
+      let profile_Id = document.location.href.split("/")[4];
+      $(document).ready(function () {
+        valid().then((response) => {
+          writer_Id = response["result"]["id"];
 
-                writer_Id == profile_Id ?
-                    $('#editProfile').css('display', 'block')
-                    : $('#editProfile').css('display', 'none')
+          writer_Id == profile_Id
+            ? $("#editProfile").css("display", "block")
+            : $("#editProfile").css("display", "none");
 
-                console.log(writer_Id)
-            });
-            show_comments();
+          console.log(writer_Id);
         });
+        show_comments();
+      });
 
-        function valid() {
-            return fetch("/valid")
+      function valid() {
+        return fetch("/valid")
+          .then((res) => res.json())
+          .then((data) => {
+            return data;
+          });
+      }
+
+      function delete_profile() {
+        $.ajax({
+          type: "DELETE",
+          url: "/profile/delete",
+          data: {
+            id_give: writer_Id,
+          },
+          success: function (response) {
+            if (response["msg"] != null) {
+              alert(response["msg"]);
+              window.location.href = "/";
+            } else {
+              console.log("뭔가 뭔가임.");
+            }
+          },
+        });
+      }
+
+      // function profile() {
+      //     fetch("/profile/<userId>").then((res) => res.json()).then((data) => {
+      //         let rows = data['result']
+      //         console.log(rows)
+      //     });
+      // }
+      function logOutHandler() {
+        document.cookie =
+          "mytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "/";
+      }
+
+      function commentWrite() {
+        let profileId = $("#recipient-name").val();
+        let writerId = writer_Id;
+        let commentText = $("#message-text").val();
+
+        let formData = new FormData();
+        formData.append("profileId_give", profileId);
+        formData.append("writerId_give", writerId);
+        formData.append("commentText_give", commentText);
+
+        fetch("/comment/write", { method: "POST", body: formData })
+          .then((res) => res.json())
+          .then((data) => {
+            alert(data["msg"]);
+            window.location.href = "/profile/" + profileId;
+          });
+      }
+
+      function show_comments() {
+        $("#commentsArea").empty();
+        fetch("/comments/all/" + profile_Id)
+          .then((res) => res.json())
+          .then((data) => {
+            let rows = data["result"];
+            let commentText;
+            let writerName;
+            let writerImage;
+            console.log(rows);
+            rows.forEach((e) => {
+              let temp_html = "";
+
+              let writerProfileId = e["writerId"];
+              fetch("/writerProfile/" + writerProfileId)
                 .then((res) => res.json())
                 .then((data) => {
-                    return data;
-                });
-        }
-
-        function delete_profile() {
-            $.ajax({
-                type: "DELETE",
-                url: "/profile/delete",
-                data: {
-                    id_give: writer_Id
-                },
-                success: function (response) {
-                    if (response['msg'] != null) {
-                        alert(response['msg']);
-                        window.location.href = "/";
-                    } else {
-                        console.log("뭔가 뭔가임.")
-                    }
-                },
-            });
-        }
-
-        // function profile() {
-        //     fetch("/profile/<userId>").then((res) => res.json()).then((data) => {
-        //         let rows = data['result']
-        //         console.log(rows)
-        //     });
-        // }
-        function logOutHandler() {
-            document.cookie =
-                "mytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-            window.location.href = "/";
-        }
-
-        function commentWrite() {
-            let profileId = $('#recipient-name').val()
-            let writerId = writer_Id
-            let commentText = $('#message-text').val()
-
-            let formData = new FormData();
-            formData.append("profileId_give", profileId);
-            formData.append("writerId_give", writerId);
-            formData.append("commentText_give", commentText);
-
-            fetch('/comment/write', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                alert(data['msg']);
-                window.location.href = "/profile/" + profileId;
-            });
-        }
-
-
-        function show_comments() {
-            $("#commentsArea").empty();
-            fetch("/comments/all/" + profile_Id)
-                .then((res) => res.json())
-                .then((data) => {
-                    let rows = data["result"];
-                    let commentText;
-                    let writerName;
-                    let writerImage;
-                    console.log(rows);
-                    rows.forEach((e) => {
-                        let temp_html = '';
-                        
-                        let writerProfileId = e["writerId"];
-                        fetch("/writerProfile/" + writerProfileId)
-                            .then((res) => res.json())
-                            .then((data) => {
-                                writerName = data["result"]["name"];
-                                writerImage = data["result"]["image"];
-                                commentText = e["commentText"];
-                                temp_html = `
+                  if (data["result"] != "결과없음") {
+                    writerName = data["result"]["name"];
+                    writerImage = data["result"]["image"];
+                    commentText = e["commentText"];
+                    temp_html = `
                                 <div class="col-12" style="margin-top: 10px; margin-bottom: 10px; border:1px solid black">
         <!-- 여기서부터 방명록 코드 반복시작-->
         <div class="row" style="margin-top: 10px; ">
@@ -264,249 +275,346 @@
           </div>
         </div>
       </div>`;
-        $("#commentsArea").append(temp_html);
-                        });
+                    $("#commentsArea").append(temp_html);
+                  }
                 });
             });
-        }
-
-
+          });
+      }
     </script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="result_profileId" style="display: none">"{{profileId}}"</div>
     <div class="row">
-        <!-- 최상단 로고, 회원관련 영역 시작-->
-        <div class="col-6 header" id="profile-head">
-            <img src="/static/images/IMG_7217.png" onClick="location.href='/'" />
-        </div>
-        <div class="col-6 btn">
-            <button type="button" class="btn btn-primary" onclick="logOutHandler()">로그아웃</button>
-        </div>
-
+      <!-- 최상단 로고, 회원관련 영역 시작-->
+      <div class="col-6 header" id="profile-head">
+        <img src="/static/images/IMG_7217.png" onClick="location.href='/'" />
+      </div>
+      <div class="col-6 btn">
+        <button type="button" class="btn btn-primary" onclick="logOutHandler()">
+          로그아웃
+        </button>
+      </div>
     </div>
     <!-- 최상단 로고, 회원관련 영역 끝-->
     <div class="row main">
-        <!-- 본인 이미지, 이름 영역 시작-->
-        <div class="col-12">
-            <div class="row">
-                <div class="col-12 imageArea">
-                    <img src="{{image}}" />
-                </div>
-                <div id="{{result}}" class="col-12 nameArea">
-                    <p>{{name}}</p>
-                </div>
-            </div>
+      <!-- 본인 이미지, 이름 영역 시작-->
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 imageArea">
+            <img src="{{image}}" />
+          </div>
+          <div id="{{result}}" class="col-12 nameArea">
+            <p>{{name}}</p>
+          </div>
         </div>
+      </div>
     </div>
     <!-- 본인 이미지, 이름 영역 끝-->
-    <hr style="width: 95%; margin: 0 auto; margin-top: 20px; margin-bottom: 20px" />
+    <hr
+      style="width: 95%; margin: 0 auto; margin-top: 20px; margin-bottom: 20px"
+    />
     <div class="row main2">
-        <!-- 편집버튼 영역 시작-->
-        <div class="col-12 editBtnArea" id="editProfile">
-            <button type="button" class="btn btn-primary" onClick="location.href=document.location.href + '/update'">프로필
-                편집</button>
-            <button type="button" class="btn btn-outline-danger" onClick="delete_profile()">프로필 삭제</button>
-        </div>
+      <!-- 편집버튼 영역 시작-->
+      <div class="col-12 editBtnArea" id="editProfile">
+        <button
+          type="button"
+          class="btn btn-primary"
+          onClick="location.href=document.location.href + '/update'"
+        >
+          프로필 편집
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline-danger"
+          onClick="delete_profile()"
+        >
+          프로필 삭제
+        </button>
+      </div>
     </div>
     <!-- 편집버튼 영역 끝-->
     <div class="row main3">
-        <!-- 본인 프로필 영역 시작 -->
-        <div class="col-12">
-            <p><i class="fa-solid fa-laptop-code"></i>{{field}}</p>
-        </div>
-        <div class="col-12">
-            <p><i class="fa-brands fa-github"></i>{{github}}</p>
-        </div>
-        <div class="col-12">
-            <p><i class="fa-brands fa-chrome"></i>{{blog}}</p>
-        </div>
-        <div class="col-12">
-            <p><i class="fa-regular fa-newspaper"></i>{{mbti}}</p>
-        </div>
-        <div class="col-12">
-            <p>
-                <i class="fa-brands fa-instagram"></i>instagram 정보는 여기로
-                불러주시면 됩니다.
-            </p>
-        </div>
-        <div class="col-12">
-            <p>
-                <i class="fa-sharp fa-solid fa-pen-to-square"></i>한 줄 소개 정보는
-                여기로 불러주시면 됩니다.
-            </p>
-        </div>
+      <!-- 본인 프로필 영역 시작 -->
+      <div class="col-12">
+        <p><i class="fa-solid fa-laptop-code"></i>{{field}}</p>
+      </div>
+      <div class="col-12">
+        <p><i class="fa-brands fa-github"></i>{{github}}</p>
+      </div>
+      <div class="col-12">
+        <p><i class="fa-brands fa-chrome"></i>{{blog}}</p>
+      </div>
+      <div class="col-12">
+        <p><i class="fa-regular fa-newspaper"></i>{{mbti}}</p>
+      </div>
+      <div class="col-12">
+        <p>
+          <i class="fa-brands fa-instagram"></i>instagram 정보는 여기로
+          불러주시면 됩니다.
+        </p>
+      </div>
+      <div class="col-12">
+        <p>
+          <i class="fa-sharp fa-solid fa-pen-to-square"></i>한 줄 소개 정보는
+          여기로 불러주시면 됩니다.
+        </p>
+      </div>
     </div>
     <!-- 본인 프로필 영역 끝 -->
-    <hr style="width: 95%; margin: 0 auto; margin-top: 20px; margin-bottom: 20px" />
+    <hr
+      style="width: 95%; margin: 0 auto; margin-top: 20px; margin-bottom: 20px"
+    />
     <div class="row main2">
-        <!-- 편집버튼 영역 시작-->
-        <div class="col-12 editBtnArea">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                data-bs-whatever="@mdo">방명록 남기기</button>
-        </div>
+      <!-- 편집버튼 영역 시작-->
+      <div class="col-12 editBtnArea">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          data-bs-whatever="@mdo"
+        >
+          방명록 남기기
+        </button>
+      </div>
     </div>
     <!-- 편집버튼 영역 끝-->
     <div class="row main4">
-        <!-- 방명록 영역 시작 -->
-        <div class="col-12" id="commentsArea" style="margin-top: 10px; margin-bottom: 10px">
-            <!-- 여기서부터 방명록 코드 반복시작-->
-            <div class="row" style="margin-top: 10px">
-                <div class="col-12" style="width: 95%; margin: 0 auto">
-                    <div class="row">
-                        <div class="col-2 userImgArea">
-                            <img src="${writerImage}">
-                        </div>
-                        <div class="col-10 userNameArea">이름</div>
-                    </div>
-                </div>
-                <hr style="
+      <!-- 방명록 영역 시작 -->
+      <div
+        class="col-12"
+        id="commentsArea"
+        style="margin-top: 10px; margin-bottom: 10px"
+      >
+        <!-- 여기서부터 방명록 코드 반복시작-->
+        <div class="row" style="margin-top: 10px">
+          <div class="col-12" style="width: 95%; margin: 0 auto">
+            <div class="row">
+              <div class="col-2 userImgArea">
+                <img src="${writerImage}" />
+              </div>
+              <div class="col-10 userNameArea">이름</div>
+            </div>
+          </div>
+          <hr
+            style="
               width: 95%;
               margin: 0 auto;
               margin-top: 20px;
               margin-bottom: 20px;
-            " />
-                <div class="col-12 userCommentArea" style="border: 1px solid black">
-                    <p>
-                        방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
-                        글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
-                        글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
-                        글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
-                        글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
-                        글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
-                        글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
-                        글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
-                        글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
-                        글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
-                        abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
-                        가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                    </p>
-                </div>
-            </div>
-            <!-- 여기서부터 방명록 코드 반복 끝-->
-            <div class="col-12" style="margin-top: 10px; margin-bottom: 10px;"><!-- 여기서부터 방명록 코드 반복시작-->
-                <div class="row" style="margin-top: 10px;">
-                    <div class="col-12" style="width: 95%; margin:0 auto">
-                        <div class="row">
-                            <div class="col-2 userImgArea">
-
-                            </div>
-                            <div class="col-10 userNameArea">
-                                이름
-                            </div>
-                        </div>
-                    </div>
-                    <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
-                    <div class="col-12 userCommentArea" style="border:1px solid black">
-                        <p>방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        </p>
-                    </div>
-                </div>
-            </div> <!-- 여기서부터 방명록 코드 반복 끝-->
-            <div class="col-12" style="margin-top: 10px; margin-bottom: 10px;"><!-- 여기서부터 방명록 코드 반복시작-->
-                <div class="row" style="margin-top: 10px;">
-                    <div class="col-12" style="width: 95%; margin:0 auto">
-                        <div class="row">
-                            <div class="col-2 userImgArea">
-
-                            </div>
-                            <div class="col-10 userNameArea">
-                                이름
-                            </div>
-                        </div>
-                    </div>
-                    <hr style="width:95%; margin:0 auto; margin-top: 20px; margin-bottom: 20px;">
-                    <div class="col-12 userCommentArea" style="border:1px solid black">
-                        <p>방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                            방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
-                        </p>
-                    </div>
-                </div>
-            </div> <!-- 여기서부터 방명록 코드 반복 끝-->
-        </div> <!-- 방명록 영역 끝 -->
-    </div>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">방명록 남기기</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">받는 사람 아이디:</label>
-                            <input type="text" class="form-control" id="recipient-name" value="{{profileId}}" disabled>
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">방명록 글:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <button type="button" class="btn btn-primary" onClick="commentWrite()">작성하기</button>
-                </div>
-            </div>
+            "
+          />
+          <div class="col-12 userCommentArea" style="border: 1px solid black">
+            <p>
+              방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+              글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+              abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+              가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz
+            </p>
+          </div>
         </div>
+        <!-- 여기서부터 방명록 코드 반복 끝-->
+        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+          <!-- 여기서부터 방명록 코드 반복시작-->
+          <div class="row" style="margin-top: 10px">
+            <div class="col-12" style="width: 95%; margin: 0 auto">
+              <div class="row">
+                <div class="col-2 userImgArea"></div>
+                <div class="col-10 userNameArea">이름</div>
+              </div>
+            </div>
+            <hr
+              style="
+                width: 95%;
+                margin: 0 auto;
+                margin-top: 20px;
+                margin-bottom: 20px;
+              "
+            />
+            <div class="col-12 userCommentArea" style="border: 1px solid black">
+              <p>
+                방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- 여기서부터 방명록 코드 반복 끝-->
+        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+          <!-- 여기서부터 방명록 코드 반복시작-->
+          <div class="row" style="margin-top: 10px">
+            <div class="col-12" style="width: 95%; margin: 0 auto">
+              <div class="row">
+                <div class="col-2 userImgArea"></div>
+                <div class="col-10 userNameArea">이름</div>
+              </div>
+            </div>
+            <hr
+              style="
+                width: 95%;
+                margin: 0 auto;
+                margin-top: 20px;
+                margin-bottom: 20px;
+              "
+            />
+            <div class="col-12 userCommentArea" style="border: 1px solid black">
+              <p>
+                방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
+                가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
+                글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
+                abcdefghijklmnopqrstuvwxyz
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- 여기서부터 방명록 코드 반복 끝-->
+      </div>
+      <!-- 방명록 영역 끝 -->
     </div>
-</body>
-
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              방명록 남기기
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >받는 사람 아이디:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="recipient-name"
+                  value="{{profileId}}"
+                  disabled
+                />
+              </div>
+              <div class="mb-3">
+                <label for="message-text" class="col-form-label"
+                  >방명록 글:</label
+                >
+                <textarea class="form-control" id="message-text"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              닫기
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              onClick="commentWrite()"
+            >
+              작성하기
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
