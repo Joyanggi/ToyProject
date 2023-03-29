@@ -228,6 +228,25 @@ def comments_get_all(profileId):
     return jsonify({'result':comments_data})
 
 
+#프로필 수정
+@app.route('/profile/<userId>/update', methods=["GET"])
+def updatepage(userId):
+    profile_result = db.profile.find_one({'userid':userId})
+    return render_template('revise.html', 
+                           profile_result=profile_result,
+                           profileId=userId,
+                           name=profile_result['name'],
+                           field=profile_result['field'],
+                           github=profile_result['github'],
+                           blog=profile_result['blog'],
+                           mbti=profile_result['mbti'],
+                           image=profile_result['image'],
+                           email=profile_result['email'],
+                           field_value=profile_result.get('field', ''),
+                           mbti_value=profile_result.get('mbti', '')
+                           )
+
+
 @app.route('/profile/<userId>/update', methods=["POST"])
 def profile_update(userId):
     userid_receive = request.get_json()['userid_give']

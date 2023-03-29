@@ -76,7 +76,7 @@
     }
 
     function profile_check(userId) {
-      let userURL = '/profile/' + userId +'/update'
+      let userURL = '/profile/' + userId + '/update'
       $.ajax({
         type: "GET",
         url: "/profileCheck",
@@ -119,6 +119,7 @@
 
     async function update_profile() {
       if(!img_uploaded) {
+
         base64 = document.getElementById("preview").getAttribute("src")
       }
       let name = $('#name').val()
@@ -126,8 +127,16 @@
       let github = $('#github').val()
       let blog = $('#blog').val()
       let email = $('#email').val()
-      let MBTI = $('#MBTI').val()
+      let MBTI = $("#MBTI").val()
       let image = base64
+ 
+      if (field == null) {
+        field = field_value
+      }
+
+      if (MBTI == null) {
+        MBTI = mbti_value
+      }
 
       const response = await fetch("/profile/<userId>/update", {
         method: "POST",
@@ -181,15 +190,15 @@
           <div class="row g-3">
             <legend>프로필 편집하기</legend>
             <div class="col-12">
-              <label for="{{name_for_label}}" class="form-label">name</label>
+              <label for="input" class="form-label">name</label>
               <input type="text" class="form-control" id="name" value="{{name}}">
             </div>
             <div class="col-12">
               <label for="input" class="form-label">field</label>
               <select id="field" class="form-select">
-                <option value="default" selected disabled hidden>{{field}}</option>
-                <option value="1">Frontend</option>
-                <option value="2">Backend</option>
+                <option value="{{field}}" selected hidden>{{field}}</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Backend">Backend</option>
               </select>
             </div>
             <div class="col-12">
@@ -207,23 +216,23 @@
             <div class="col-md-4">
               <label for="input" class="form-label">MBTI</label>
               <select id="MBTI" class="form-select">
-                <option value="default" selected disabled hidden>{{mbti}}</option>
-                <option>ISTJ</option>
-                <option>INTJ</option>
-                <option>ESTJ</option>
-                <option>ENTJ</option>
-                <option>ISTP</option>
-                <option>INTP</option>
-                <option>ESTP</option>
-                <option>ENTP</option>
-                <option>ISFJ</option>
-                <option>INFJ</option>
-                <option>ESFJ</option>
-                <option>ENFJ</option>
-                <option>ISFP</option>
-                <option>INFP</option>
-                <option>ESFP</option>
-                <option>ENFP</option>
+                <option selected hidden value="{{mbti}}">{{mbti}}</option>
+                <option value="ISTJ">ISTJ</option>
+                <option value="INTJ">INTJ</option>
+                <option value="ESTJ">ESTJ</option>
+                <option value="ENTJ">ENTJ</option>
+                <option value="ISTP">ISTP</option>
+                <option value="INTP">INTP</option>
+                <option value="ESTP">ESTP</option>
+                <option value="ENTP">ENTP</option>
+                <option value="ISFJ">ISFJ</option>
+                <option value="INFJ">INFJ</option>
+                <option value="ESFJ">ESFJ</option>
+                <option value="ENFJ">ENFJ</option>
+                <option value="ISFP">ISFP</option>
+                <option value="INFP">INFP</option>
+                <option value="ESFP">ESFP</option>
+                <option value="ENFP">ENFP</option>
               </select>
             </div>
             <div class="col-12">
