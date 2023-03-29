@@ -93,9 +93,10 @@
     }
 
     var base64
+    var img_uploaded = false
     const uploadProfile = async (e) => {
+      img_uploaded = true
       const file = (e.target.files)[0];
-
       base64 = await convertBase64(file);
       var preview = document.getElementById("preview");
       preview.src = URL.createObjectURL(file);
@@ -117,7 +118,9 @@
     }
 
     function update_profile() {
-
+      if(!img_uploaded) {
+        base64 = document.getElementById("preview").getAttribute("src")
+      }
       let name = $('#name').val()
       let field = $('#field').val()
       let github = $('#github').val()
@@ -136,7 +139,7 @@
       formData.append("userid_give", userid);
       formData.append("image_give", image);
 
-      fetch('/profile/<userid>/update', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
+      fetch('/profile/<userId>/update', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
         alert(data['msg']);
         window.location.href = "/";
       });
