@@ -61,7 +61,6 @@
     }
   </style>
   <script>
-
     $(document).ready(function () {
       show_profile()
       valid().then((response) => {
@@ -85,9 +84,11 @@
         });
     }
 
-    var isProfile = false
+    var hasProfile = false
+    var userURL
     function profile_check(userId) {
       console.log(userId)
+      userURL = '/profile/' + userId
       $.ajax({
         type: "GET",
         url: "/profileCheck",
@@ -97,24 +98,18 @@
         success: function (response) {
           console.log(response['result'])
           if (response['result'] != null) {
-            isProfile = true
-            console.log(isProfile)
-          } else {
-            console.log("result is null!")
+            hasProfile = true
           }
         }
       });
-      // fetch('/profileCheck/'+userId).then((res) => res.json()).then((data) => {
+    }
 
-      // console.log(userId)
-      // let rows = data['result']
-      // console.log(rows)
-      // if (data['result'] == null) {
-      //   window.location.href = '/profile';
-      // } else {
-      //   window.location.href = '/profile/userId?' + userId;
-      // }
-      // })
+    function reg_or_mv_to_myprofile() {
+      if (hasProfile) {
+        window.location.href = userURL.toString()
+      } else {
+        window.location.href = '/profile'
+      }
     }
 
     function show_profile() {
@@ -167,9 +162,9 @@
         </button>
       </div>
       <div id="signoutButton">
-        <button type="button" class="btn btn-primary" id="profile-register-button" onClick="profile_check()">
+        <button type="button" class="btn btn-primary" id="profile-register-button" onClick="reg_or_mv_to_myprofile()">
           마이 프로필
-        </button>
+        </button> 
         <button type="button" class="btn btn-primary" id="sign-out-button" onClick="logOutHandler()">
           로그아웃
         </button>
