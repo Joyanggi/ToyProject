@@ -146,7 +146,7 @@ def profile_post():
     if existProfile is not None:
         return({'result':'fail'})
     result = db.profile.insert_one(doc)
-    if result is not None:
+    if result is None:
         return({'result':'fail'})
     return jsonify({'msg':'프로필이 등록되었습니다.'})
 
