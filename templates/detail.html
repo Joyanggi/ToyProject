@@ -257,6 +257,7 @@
       }
 
       function delete_profile() {
+        if (confirm('정말로 삭제하시겠습니까?')) {
         $.ajax({
           type: "DELETE",
           url: "/profile/delete",
@@ -276,6 +277,7 @@
               });
           },
         });
+      }
       }
 
       function logOutHandler() {
@@ -406,6 +408,7 @@
       }
 
       function delete_comment() {
+        if (confirm("정말로 삭제하시겠습니까?")) {
         let formData = new FormData();
         let commentId = $('#commentId').text();
         formData.append("commentId_give",commentId);
@@ -423,6 +426,7 @@
               });
           
         })
+      }
       }
 
     </script>
