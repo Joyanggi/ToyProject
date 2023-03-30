@@ -31,25 +31,25 @@
     }
 
     .main {
-      height: 50px;
-      margin: 50px;
+      height: 3.125rem;
+      margin: 3.125rem;
       /* background-color: green; */
     }
 
     .mainBtns {
-      margin: 10px;
+      margin: 0.625rem;
       float: right;
-      padding-left: 50px;
+      padding-left: 3.125rem;
     }
 
     .mainLogo {
       /* background-color: beige; */
-      height: 100px;
+      height: 6.25rem;
       background-image: url(/static/images/logo.png);
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
-      margin: 50px;
+      margin: 3.125rem;
     }
 
     .search {
@@ -57,7 +57,7 @@
     }
 
     .cards {
-      margin: 50px;
+      margin: 3.125rem;
     }
     /* .card{
       min-height: 500px;
@@ -189,7 +189,7 @@
       let temp_html;
       if(is_login==true){
             temp_html = `<div onClick="location.href ='/profile/${userid}'" style="cursor:pointer;" class="col">
-                            <div class="card" style="padding:5px">
+                            <div class="card" style="padding:0.313rem">
                               <img src="${image}"/>
                               <div class="card-body">
                                 <h5 class="card-title" style="text-align:center; font-size:1.875rem">${name}</h5>
@@ -201,7 +201,7 @@
                           </div>`
           }else{
             temp_html = `<div style="cursor:pointer;" onClick="location.href='signin'" class="col">
-                            <div class="card" style="padding:5px">
+                            <div class="card" style="padding:0.313rem">
                               <img src="${image}"/>
                               <div class="card-body">
                                 <h5 class="card-title" style="text-align:center; font-size:1.875rem">${name}</h5>
@@ -251,7 +251,7 @@
         <input type="text" class="form-control" placeholder="Search name" />
 
       </div> -->
-      <div class="input-group mb-3" style="margin: 50px; width: 400px;">
+      <div class="input-group mb-3" style="margin: 3.125rem; width: 25rem;">
         <input type="text" class="form-control" placeholder="이름으로 검색하기" id="search_name" aria-label="Recipient's username" aria-describedby="button-addon2">
         <button class="btn btn-outline-secondary" type="button" onClick="search_profile()"><i class="fa-solid fa-magnifying-glass"></i></button>
       </div>
