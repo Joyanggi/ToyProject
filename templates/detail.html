@@ -45,6 +45,9 @@
         /* 최상단 회원버튼쪽 css */
         text-align: right;
       }
+      .btn:hover{
+        cursor: default;
+      }
 
       .btn > button {
         /* 최상단 회원버튼쪽 css */
@@ -158,7 +161,7 @@
       .commentsArea {
         border: none;
       }
-      .header:hover{
+      .header>img:hover{
         cursor:pointer
       }
       a{
@@ -168,6 +171,9 @@
       a:hover{
         cursor:pointer;
         color:black
+      }
+      #logout:hover{
+        cursor:pointer
       }
     </style>
     <script>
@@ -426,7 +432,7 @@
             <img src="/static/images/logo.png" onClick="location.href='/'" />
             </div>
             <div class="col-6 btn">
-            <button type="button" class="btn btn-primary" onclick="logOutHandler()">로그아웃</button>
+            <button type="button" class="btn btn-primary" id="logout" onclick="logOutHandler()">로그아웃</button>
             </div>
     </div>
     <!-- 최상단 로고, 회원관련 영역 끝-->
@@ -473,10 +479,10 @@
         <p><i class="fa-solid fa-laptop-code"></i>&nbsp;&nbsp;{{field}}</p>
       </div>
       <div class="col-12">
-        <a href="{{github}}" target='_blank'><p><i class="fa-brands fa-github"></i>&nbsp;&nbsp;{{github}}</p></a>
+        <p><a href="{{github}}" target='_blank'><i class="fa-brands fa-github"></i>&nbsp;&nbsp;{{github}}</a></p>
       </div>
       <div class="col-12">
-        <a href="{{blog}}" target='_blank'><p><i class="fa-brands fa-chrome"></i>&nbsp;&nbsp;{{blog}}</p></a>
+        <p><a href="{{blog}}" target='_blank'><i class="fa-brands fa-chrome"></i>&nbsp;&nbsp;{{blog}}</a></p>
       </div>
       <div class="col-12">
         <p><i class="fa-regular fa-newspaper"></i>&nbsp;&nbsp;{{mbti}}</p>
