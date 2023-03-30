@@ -209,7 +209,7 @@ def comment_delete():
     print(type(commentId_receive))
     db.comments.delete_one({'_id':ObjectId(commentId_receive)})
     
-    return jsonify({'msg':'방명록자이 삭제되었습니다.'})
+    return jsonify({'msg':'방명록이 삭제되었습니다.'})
 
 # @app.route("/comments/all", methods=["GET"])
 # def comments_get_all():
