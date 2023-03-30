@@ -45,6 +45,23 @@
     }
   </style>
   <script>
+
+    $(document).ready(function () {
+      valid().then((response) => {
+        if (response['result']['id'] != undefined){ //로그인 유저는 홈으로 이동
+          window.location.href = '/'
+        }
+      });
+    });
+
+    function valid() {
+      return fetch("/valid")
+        .then((res) => res.json())
+        .then((data) => {
+          return data;
+        });
+    }
+
     function join() {
       $.ajax({
         type: "POST",
