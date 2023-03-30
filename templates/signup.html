@@ -16,6 +16,7 @@
     crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -72,12 +73,28 @@
         },
         success: function (response) {
           if (response["result"] == "success") {
-            alert("회원가입이 완료되었습니다.");
-            $.cookie("mytoken", response["token"]);
-            window.location.href = "/";
+            Swal.fire({
+                icon: "success",
+                title: "회원가입이 완료되었습니다.",
+                text: "회원가입이 완료되었습니다.",
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $.cookie("mytoken", response["token"]);
+                  window.location.href = "/";
+                }
+              });
           } else {
-            alert("이미 존재하는 회원입니다.");
-            window.location.reload(); // 아이디가 이미 DB에 존재하는 경우 처리
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "이미 존재하는 회원입니다.",
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload(); // 아이디가 이미 DB에 존재하는 경우 처리
+                }
+              });
           }
         },
       });

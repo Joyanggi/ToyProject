@@ -14,6 +14,7 @@
     crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
     crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -139,24 +140,57 @@
       }
 
       if (name == "") {
-        alert("이름을 입력해주세요.");
-        name.focus();
+        Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "이름을 입력해주세요.",
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $('#name').focus();
+                }
+              });
         return false;
       }
 
       if (field == "field...") {
-        alert("직무를 선택해주세요");
+        Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "직무를 선택해주세요",
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $('#field').focus();
+                }
+              });
         return false;
       }
 
       if (email == "") {
-        alert("이메일을 입력해주세요");
-        field.focus();
+        Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "이메일을 입력해주세요",
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $('#email').focus();
+                }
+              });
         return false;
       }
       if (!emailPattern.test(email)){
-        alert("이메일 형식이 올바르지 않습니다.");
-        field.focus();
+        Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "이메일 형식이 올바르지 않습니다.",
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  $('#email').focus();
+                }
+              });
         return false;
       }
 
@@ -178,8 +212,16 @@
       })
       .then((res) => res.json())
       .then((data) => {
-        alert(data['msg'])
-        window.location.href = '/'
+        Swal.fire({
+                icon: "success",
+                title: data['msg'],
+                text: data['msg'],
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = '/'
+                }
+              });
       });
 
     }

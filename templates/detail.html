@@ -158,6 +158,9 @@
       .commentsArea {
         border: none;
       }
+      .header:hover{
+        cursor:pointer
+      }
     </style>
     <script>
       let writer_Id;
@@ -167,8 +170,16 @@
 
           writer_Id = response["result"]["id"];
           if (writer_Id == undefined){ //비로그인 유저는 접속 불가
-            alert('로그인 후 이용 부탁드립니다.')
-            window.location.href = '/'
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: '로그인 후 이용 부탁드립니다.',
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = '/'
+                }
+              });
           } else { //로그인 유저 프로필 여부 체크
             profile_check(writer_Id)
           }
@@ -200,8 +211,16 @@
           },
           success: function (response) {
             if (response['result'] == null) { //프로필 미보유자는 home 으로 이동
-              alert('프로필 등록 후 이용이 가능합니다.')
-              window.location.href = '/profile'
+              Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: '프로필 등록 후 이용이 가능합니다.',
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = '/profile'
+                }
+              });
             }
           }
         });
@@ -215,8 +234,16 @@
             id_give: writer_Id,
           },
           success: function (response) {
-            alert(response["msg"]);
-            window.location.href = "/";
+            Swal.fire({
+                icon: "success",
+                title: response["msg"],
+                text: response["msg"],
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = "/";
+                }
+              });
           },
         });
       }
@@ -240,8 +267,17 @@
         fetch("/comment/write", { method: "POST", body: formData })
           .then((res) => res.json())
           .then((data) => {
-            alert(data["result"]);
-            window.location.href = "/profile/" + profileId;
+            Swal.fire({
+                icon: "success",
+                title: data["result"],
+                text: data["result"],
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.href = "/profile/" + profileId;
+                }
+              });
+            
           });
       }
 
@@ -341,8 +377,17 @@
         formData.append("commentId_give",commentId);
         fetch('/comment/delete', { method:"DELETE", body:formData }).then((res)=>res.json())
         .then((data)=>{
-          alert(data['msg']);
-          window.location.reload()
+          Swal.fire({
+                icon: "success",
+                title: data['msg'],
+                text: data['msg'],
+                confirmButtonText: "확인",
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  window.location.reload()
+                }
+              });
+          
         })
       }
 
