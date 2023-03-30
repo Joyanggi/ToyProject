@@ -178,6 +178,10 @@
       .btn:hover{
         cursor:pointer
       }
+
+      #editProfile {
+        display: none;
+      }
     </style>
     <script>
       let writer_Id;
@@ -199,9 +203,9 @@
               });
           }
 
-          writer_Id == profile_Id
-            ? $("#editProfile").css("display", "block")
-            : $("#editProfile").css("display", "none");
+          if(writer_Id == profile_Id) {
+            $("#editProfile").css("display", "block")
+          }
         });
 
         show_comments();
