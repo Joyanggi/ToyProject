@@ -232,6 +232,8 @@ def comments_get_all(profileId):
 @app.route('/profile/<userId>/update', methods=["GET"])
 def updatepage(userId):
     profile_result = db.profile.find_one({'userid':userId})
+    if (profile_result is None):
+        return render_template('index.html')
     return render_template('revise.html', 
                            profile_result=profile_result,
                            profileId=userId,
