@@ -95,7 +95,6 @@
     var hasProfile = false
     var userURL
     function profile_check(userId) {
-      console.log(userId)
       userURL = '/profile/' + userId
       $.ajax({
         type: "GET",
@@ -104,7 +103,6 @@
           userId: userId
         },
         success: function (response) {
-          console.log(response['result'])
           if (response['result'] != null) {
             hasProfile = true
           }

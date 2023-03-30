@@ -85,7 +85,6 @@
           userId: userId
         },
         success: function (response) {
-          console.log(response['result'])
           if (response['result'] != null) { //프로필 보유자는 detail 페이지로 이동
             window.location.href = userURL.toString()
           }
