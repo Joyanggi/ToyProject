@@ -37,8 +37,8 @@
 
       .header > img {
         /* 최상단 로고쪽 css */
-        max-width: 300px;
-        margin: 20px 20px 20px 20px;
+        max-width: 18.75rem;
+        margin: 1.25rem 1.25rem 1.25rem 1.25rem;
       }
 
       .btn {
@@ -51,7 +51,7 @@
 
       .btn > button {
         /* 최상단 회원버튼쪽 css */
-        margin: 20px 20px 20px 0px;
+        margin: 1.25rem 1.25rem 1.25rem 0rem;
       }
 
       .main {
@@ -62,16 +62,16 @@
 
         .imageArea {
             /* 메인 프로필 이미지 영역 css */
-            border: 1px solid white;
+            border: 0.063rem solid white;
             background-color: white;
-            width: 400px;
-            height: 400px;
+            width: 25rem;
+            height: 25rem;
             border-radius: 50%;
             margin: 0 auto;
             object-fit: cover;
             overflow: hidden;
             display: flex;
-            padding: 0px 0px 0px 0px;
+            padding: 0rem 0rem 0rem 0rem;
             text-align: center;
             justify-content: center;
         }
@@ -84,7 +84,7 @@
       .nameArea {
         /* 메인 프로필 이름 관련 css */
         /* border: 1px solid black; */
-        font-size: 60px;
+        font-size: 3.75rem;
         text-align: center;
       }
 
@@ -99,7 +99,7 @@
         /* 프로필 정보 영역 관련 css */
         width: 95%;
         margin: 0 auto;
-        font-size: 20px;
+        font-size: 1.25rem;
       }
 
       .main4 {
@@ -111,15 +111,15 @@
       .main4 > .col-12 {
         /* 방명록 영역별 관련 css */
         /* border: 1px solid black; */
-        height: 300px;
+        height: 18.75rem;
       }
 
         .userImgArea {
             /* 방명록 작성자 이미지영역 관련 css */
-            border: 1px solid white;
+            border: 0.063rem solid white;
             background-color: white;
-            width: 50px;
-            height: 50px;
+            width: 3.125rem;
+            height: 3.125rem;
             border-radius: 50%;
             object-fit: cover;
             overflow: hidden;
@@ -138,15 +138,15 @@
         /* 방명록 작성자 이름영역 관련 css */
         width: 95%;
         margin: 0 auto;
-        font-size: 30px;
+        font-size: 1.875rem;
       }
 
       .userCommentArea {
         /* 방명록 작성자 방명록영역 관련 css */
         width: 95%;
         margin: 0 auto;
-        margin-bottom: 20px;
-        max-height: 150px;
+        margin-bottom: 1.25rem;
+        max-height: 9.375rem;
         overflow: scroll;
       }
 
@@ -321,9 +321,10 @@
                                 commentText = e["commentText"];
                                 if(writer_Id===writerProfileId){
                                   temp_html = `
-                                <div class="col-12" style="margin-top: 10px; margin-bottom: 10px; border:1px solid white; border-radius: 30px; box-shadow:2px 3px 4px 0px">
+                                <div class="col-12" style="margin-top: 0.625rem; margin-bottom: 0.625rem; border:0.063rem solid white; border-radius: 1.875rem
+                                ; box-shadow:0.125rem 0.188rem 0.25rem 0rem">
                                   <!-- 여기서부터 방명록 코드 반복시작-->
-                                  <div class="row" style="margin-top: 10px; ">
+                                  <div class="row" style="margin-top: 0.625rem; ">
                                     <div class="col-12" style="width: 95%; margin: 0 auto">
                                       <div class="row">
                                         <div class="col-2 userImgArea">
@@ -337,8 +338,8 @@
                                       style="
                                         width: 95%;
                                         margin: 0 auto;
-                                        margin-top: 20px;
-                                        margin-bottom: 20px;
+                                        margin-top: 1.25rem;
+                                        margin-bottom: 1.25rem;
                                       "
                                     />
                                     <div class="col-12 userCommentArea">
@@ -356,9 +357,9 @@
                                 }
                                 else{
                                   temp_html = `
-                                <div class="col-12" style="margin-top: 10px; margin-bottom: 10px; border:1px solid white; border-radius: 30px; box-shadow:2px 3px 4px 0px">
+                                <div class="col-12" style="margin-top: 0.625rem; margin-bottom: 0.625rem; border:0.063rem solid white; border-radius: 1.875rem; box-shadow:0.125rem 0.188rem 0.25rem 0rem">
                                   <!-- 여기서부터 방명록 코드 반복시작-->
-                                  <div class="row" style="margin-top: 10px; ">
+                                  <div class="row" style="margin-top: 0.625rem; ">
                                     <div class="col-12" style="width: 95%; margin: 0 auto">
                                       <div class="row">
                                         <div class="col-2 userImgArea">
@@ -371,8 +372,8 @@
                                       style="
                                         width: 95%;
                                         margin: 0 auto;
-                                        margin-top: 20px;
-                                        margin-bottom: 20px;
+                                        margin-top: 1.25rem;
+                                        margin-bottom: 1.25rem;
                                       "
                                     />
                                     <div class="col-12 userCommentArea">
@@ -440,7 +441,7 @@
     </div>
     <!-- 본인 이미지, 이름 영역 끝-->
     <hr
-      style="width: 95%; margin: 0 auto; margin-top: 20px; margin-bottom: 20px"
+      style="width: 95%; margin: 0 auto; margin-top: 1.25rem; margin-bottom: 1.25rem"
     />
     <div class="row main2">
       <!-- 편집버튼 영역 시작-->
@@ -480,7 +481,7 @@
     </div>
     <!-- 본인 프로필 영역 끝 -->
     <hr
-      style="width: 95%; margin: 0 auto; margin-top: 20px; margin-bottom: 20px"
+      style="width: 95%; margin: 0 auto; margin-top: 1.25rem; margin-bottom: 1.25rem"
     />
     <div class="row main2">
       <!-- 편집버튼 영역 시작-->
@@ -502,10 +503,10 @@
       <div
         class="col-12"
         id="commentsArea"
-        style="margin-top: 10px; margin-bottom: 10px"
+        style="margin-top: 0.625rem; margin-bottom: 0.625rem"
       >
         <!-- 여기서부터 방명록 코드 반복시작-->
-        <div class="row" style="margin-top: 10px">
+        <div class="row" style="margin-top: 0.625rem">
           <div class="col-12" style="width: 95%; margin: 0 auto">
             <div class="row">
               <div class="col-2 userImgArea">
@@ -518,11 +519,11 @@
             style="
               width: 95%;
               margin: 0 auto;
-              margin-top: 20px;
-              margin-bottom: 20px;
+              margin-top: 1.25rem;
+              margin-bottom: 1.25rem;
             "
           />
-          <div class="col-12 userCommentArea" style="border: 1px solid black">
+          <div class="col-12 userCommentArea" style="border: 0.063rem solid black">
             <p>
               방명록 글은 여기로 불러주시면 됩니다. 가나다라마바사아자차카타파하
               abcdefghijklmnopqrstuvwxyz 방명록 글은 여기로 불러주시면 됩니다.
@@ -558,9 +559,9 @@
           </div>
         </div>
         <!-- 여기서부터 방명록 코드 반복 끝-->
-        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+        <div class="col-12" style="margin-top: 0.625rem; margin-bottom: 0.625rem">
           <!-- 여기서부터 방명록 코드 반복시작-->
-          <div class="row" style="margin-top: 10px">
+          <div class="row" style="margin-top: 0.625rem">
             <div class="col-12" style="width: 95%; margin: 0 auto">
               <div class="row">
                 <div class="col-2 userImgArea"></div>
@@ -571,11 +572,11 @@
               style="
                 width: 95%;
                 margin: 0 auto;
-                margin-top: 20px;
-                margin-bottom: 20px;
+                margin-top: 1.25rem;
+                margin-bottom: 1.25rem;
               "
             />
-            <div class="col-12 userCommentArea" style="border: 1px solid black">
+            <div class="col-12 userCommentArea" style="border: 0.063rem solid black">
               <p>
                 방명록 글은 여기로 불러주시면 됩니다.
                 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
@@ -613,9 +614,9 @@
           </div>
         </div>
         <!-- 여기서부터 방명록 코드 반복 끝-->
-        <div class="col-12" style="margin-top: 10px; margin-bottom: 10px">
+        <div class="col-12" style="margin-top: 0.625rem; margin-bottom: 0.625rem">
           <!-- 여기서부터 방명록 코드 반복시작-->
-          <div class="row" style="margin-top: 10px">
+          <div class="row" style="margin-top: 0.625rem">
             <div class="col-12" style="width: 95%; margin: 0 auto">
               <div class="row">
                 <div class="col-2 userImgArea"></div>
@@ -626,11 +627,11 @@
               style="
                 width: 95%;
                 margin: 0 auto;
-                margin-top: 20px;
-                margin-bottom: 20px;
+                margin-top: 1.25rem;
+                margin-bottom: 1.25rem;
               "
             />
-            <div class="col-12 userCommentArea" style="border: 1px solid black">
+            <div class="col-12 userCommentArea" style="border: 0.063rem solid black">
               <p>
                 방명록 글은 여기로 불러주시면 됩니다.
                 가나다라마바사아자차카타파하 abcdefghijklmnopqrstuvwxyz 방명록
