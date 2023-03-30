@@ -143,35 +143,8 @@
           let email = e['email']
           let mbti = e['mbti']
           let image = e['image']
-          let temp_html;
-          if(is_login==true){
-            temp_html = `<div onClick="location.href ='/profile/${userid}'" style="cursor:pointer;" class="col">
-                            <div class="card" style="padding:5px">
-                              <img src="${image}"/>
-                              <div class="card-body">
-                                <h5 class="card-title" style="text-align:center; font-size:1.875rem">${name}</h5>
-                                <p class="card-text">직무 : ${field}</p>
-                                <a class="card-text" href="${blog}" target="_blank" rel="noopener noreferrer">블로그 : ${blog}</a>
-                                <p class="card-text">mbti : ${mbti}</p>
-                              </div>
-                            </div>
-                          </div>`
-          }else{
-            temp_html = `<div style="cursor:pointer;" onClick="location.href='signin'" class="col">
-                            <div class="card" style="padding:5px">
-                              <img src="${image}"/>
-                              <div class="card-body">
-                                <h5 class="card-title" style="text-align:center; font-size:1.875rem">${name}</h5>
-                                <p class="card-text">직무 : ${field}</p>
-                                <a class="card-text" href="${blog}" target="_blank" rel="noopener noreferrer">블로그 : ${blog}</a>
-                                <p class="card-text">mbti : ${mbti}</p>
-                              </div>
-                            </div>
-                          </div>`
-          }
+          makeProfile(userid,name,field,github,blog,email,mbti,image);
 
-            
-          $('#profile-box').append(temp_html)
         })
       })
     }
@@ -195,8 +168,16 @@
           let email = e['email']
           let mbti = e['mbti']
           let image = e['image']
-          let temp_html;
-          if(is_login==true){
+          makeProfile(userid,name,field,github,blog,email,mbti,image);
+
+        }
+      )}
+    })
+  }
+
+  function makeProfile(userid,name,field,github,blog,email,mbti,image){
+      let temp_html;
+      if(is_login==true){
             temp_html = `<div onClick="location.href ='/profile/${userid}'" style="cursor:pointer;" class="col">
                             <div class="card" style="padding:5px">
                               <img src="${image}"/>
@@ -221,13 +202,8 @@
                             </div>
                           </div>`
           }
-
-            
           $('#profile-box').append(temp_html)
-        }
-      )}
-    })
-  }
+    }
 
     function logOutHandler() {
       document.cookie = 'mytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
