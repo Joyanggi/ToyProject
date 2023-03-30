@@ -57,7 +57,6 @@
     $(document).ready(function () {
       valid().then((response) => {
         userid = response['result']['id']
-        console.log(userid)
 
         if (response['result']['id'] != undefined) {
           profile_check(response['result']['id'])
@@ -84,7 +83,6 @@
           userId: userId
         },
         success: function (response) {
-          console.log(response['result'])
           if (response['result'] == null) { //프로필 미보유자는 홈으로 이동
             window.location.href = '/'
           }
@@ -119,7 +117,6 @@
 
     async function update_profile() {
       if(!img_uploaded) {
-
         base64 = document.getElementById("preview").getAttribute("src")
       }
       let name = $('#name').val()

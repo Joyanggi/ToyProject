@@ -166,8 +166,7 @@
           writer_Id == profile_Id
             ? $("#editProfile").css("display", "block")
             : $("#editProfile").css("display", "none");
-
-          console.log(writer_Id);
+ 
         });
         show_comments();
       });
@@ -188,12 +187,8 @@
             id_give: writer_Id,
           },
           success: function (response) {
-            if (response["msg"] != null) {
-              alert(response["msg"]);
-              window.location.href = "/";
-            } else {
-              console.log("뭔가 뭔가임.");
-            }
+            alert(response["msg"]);
+            window.location.href = "/";
           },
         });
       }
@@ -237,7 +232,6 @@
                     let commentText;
                     let writerName;
                     let writerImage;
-                    console.log(rows);
                     rows.forEach((e) => {
                         let temp_html = "";
                         let commentId = e['_id']; // 방명록의 고유 아이디 -> 이걸 이용해서 삭제할거임
