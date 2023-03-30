@@ -73,12 +73,23 @@
     }
   </style>
   <script>
+
+    var is_login = false
     $(document).ready(function () {
       valid().then((response) => {
-        response['result'] == "fail" ?
-          $('#signButton').css('display', 'block') && show_profile(false)
-          : $('#signoutButton').css('display', 'block') && show_profile(true)
+
+        if (response['result'] == "fail") {
+          $('#signButton').css('display', 'block')
+        } else {
+          $('#signoutButton').css('display', 'block')
+          is_login = true
+        }
+        // response['result'] == "fail" ?
+        //   $('#signButton').css('display', 'block') && show_profile(false)
+        //   : $('#signoutButton').css('display', 'block') && show_profile(true)
         
+        show_profile()
+
         if (response['result']['id'] != undefined){
           profile_check(response['result']['id'])
         }
@@ -119,7 +130,7 @@
       }
     }
 
-    function show_profile(check) {
+    function show_profile() {
       fetch('/profile/all').then((res) => res.json()).then((data) => {
         let rows = data['result']
         $('#profile-box').empty()
@@ -133,7 +144,7 @@
           let mbti = e['mbti']
           let image = e['image']
           let temp_html;
-          if(check==true){
+          if(is_login==true){
             temp_html = `<div onClick="location.href ='/profile/${userid}'" style="cursor:pointer;" class="col">
                             <div class="card" style="padding:5px">
                               <img src="${image}"/>
@@ -164,6 +175,59 @@
         })
       })
     }
+
+    function search_profile() {
+      let input = $('#search_name').val()
+      $.ajax({
+        type: "GET",
+        url: "/search",
+        data: {
+          searchKeyword: input
+        },
+        success: function (response) {
+          $('#profile-box').empty()
+          response['result'].forEach((e) => {
+          let userid = e['userid']
+          let name = e['name']
+          let field = e['field']
+          let github = e['github']
+          let blog = e['blog']
+          let email = e['email']
+          let mbti = e['mbti']
+          let image = e['image']
+          let temp_html;
+          if(is_login==true){
+            temp_html = `<div onClick="location.href ='/profile/${userid}'" style="cursor:pointer;" class="col">
+                            <div class="card" style="padding:5px">
+                              <img src="${image}"/>
+                              <div class="card-body">
+                                <h5 class="card-title" style="text-align:center; font-size:1.875rem">${name}</h5>
+                                <p class="card-text">직무 : ${field}</p>
+                                <a class="card-text" href="${blog}" target="_blank" rel="noopener noreferrer">블로그 : ${blog}</a>
+                                <p class="card-text">mbti : ${mbti}</p>
+                              </div>
+                            </div>
+                          </div>`
+          }else{
+            temp_html = `<div style="cursor:pointer;" onClick="location.href='signin'" class="col">
+                            <div class="card" style="padding:5px">
+                              <img src="${image}"/>
+                              <div class="card-body">
+                                <h5 class="card-title" style="text-align:center; font-size:1.875rem">${name}</h5>
+                                <p class="card-text">직무 : ${field}</p>
+                                <a class="card-text" href="${blog}" target="_blank" rel="noopener noreferrer">블로그 : ${blog}</a>
+                                <p class="card-text">mbti : ${mbti}</p>
+                              </div>
+                            </div>
+                          </div>`
+          }
+
+            
+          $('#profile-box').append(temp_html)
+        }
+      )}
+    })
+  }
 
     function logOutHandler() {
       document.cookie = 'mytoken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
@@ -197,9 +261,13 @@
   <div class="mainLogo"></div>
   <div class="serch">
     <div class="row">
-      <div class="col" style="margin: 50px">
+      <!-- <div class="col" style="margin: 50px">
         <input type="text" class="form-control" placeholder="Search name" />
 
+      </div> -->
+      <div class="input-group mb-3" style="margin: 50px">
+        <input type="text" class="form-control" placeholder="이름으로 검색하기" id="search_name" aria-label="Recipient's username" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button"  onClick="search_profile()">검색</button>
       </div>
     </div>
   </div>

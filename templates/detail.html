@@ -170,6 +170,7 @@
 
           writer_Id = response["result"]["id"];
           if (writer_Id == undefined){ //비로그인 유저는 접속 불가
+// <<<<<<< HEAD
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
@@ -184,6 +185,12 @@
             profile_check(writer_Id)
           }
 
+// =======
+//             alert('로그인 후 이용 부탁드립니다.')
+//             window.location.href = '/'
+//           } 
+          
+// >>>>>>> 1c6be3648d593b2d9f0ce4bfdc8398fec31f46de
           writer_Id == profile_Id
             ? $("#editProfile").css("display", "block")
             : $("#editProfile").css("display", "none");
@@ -202,7 +209,7 @@
       }
 
       function profile_check(userId) {
-        let userURL = '/profile/' + userId
+        let is_exist = false
         $.ajax({
           type: "GET",
           url: "/profileCheck",
@@ -210,6 +217,7 @@
             userId: userId
           },
           success: function (response) {
+// <<<<<<< HEAD
             if (response['result'] == null) { //프로필 미보유자는 home 으로 이동
               Swal.fire({
                 icon: "error",
@@ -221,9 +229,14 @@
                   window.location.href = '/profile'
                 }
               });
+// =======
+//             if (response['result'] != null) {
+//               is_exist = true;
+// >>>>>>> 1c6be3648d593b2d9f0ce4bfdc8398fec31f46de
             }
           }
         });
+        return is_exist;
       }
 
       function delete_profile() {
@@ -255,6 +268,10 @@
       }
 
       function commentWrite() {
+        if (!profile_check(writer_Id)) {
+          alert('프로필 등록 후 이용가능합니다.')
+          return;
+        }
         let profileId = $("#recipient-name").val();
         let writerId = writer_Id;
         let commentText = $("#message-text").val();
