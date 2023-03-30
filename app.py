@@ -208,8 +208,6 @@ def comment_write():
 @app.route("/comment/delete", methods=["DELETE"])
 def comment_delete():
     commentId_receive = request.form['commentId_give']
-    print(commentId_receive)
-    print(type(commentId_receive))
     db.comments.delete_one({'_id':ObjectId(commentId_receive)})
     
     return jsonify({'msg':'방명록이 삭제되었습니다.'})
@@ -293,6 +291,12 @@ def writerProfile_get(writerId):
         return jsonify({'result':doc})
     else:
         return jsonify({'result':'결과없음'})
+
+@app.route("/search", methods=["GET"])
+def search_Profile():
+    search_keyword = request.args.get('searchKeyword')
+    search_result = list(db.profile.find({ "name": { "$regex": search_keyword } },{'_id':False}))
+    return jsonify({'result':search_result})
 
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
