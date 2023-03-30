@@ -129,6 +129,9 @@
       let email = $('#email').val()
       let MBTI = $('#MBTI').val()
       let image = base64
+      const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+
 
       if (name == "") {
         alert("이름을 입력해주세요.");
@@ -143,6 +146,11 @@
 
       if (email == "") {
         alert("이메일을 입력해주세요");
+        field.focus();
+        return false;
+      }
+      if (!emailPattern.test(email)){
+        alert("이메일 형식이 올바르지 않습니다.");
         field.focus();
         return false;
       }
