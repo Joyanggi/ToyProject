@@ -130,7 +130,13 @@
 
   <body>
     <!--로그인 후 메인 페이지에서 다시 로그인 화면으로 못가게하기.--> 
+    
     <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+      <div class="row">
+        <div class="col" style="margin:3.125rem">
+          <a href="/"><img src="/static/images/home.png" alt="홈으로가기" width="50"></a>
+        </div>
+      </div>
     <div class="main">
       <div class="mainLogo"></div>
       <div class="inputId">
