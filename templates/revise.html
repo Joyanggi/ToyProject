@@ -54,15 +54,17 @@
   <script>
 
     var userid
+    var profile_Id = document.location.href.split("/")[4];
     $(document).ready(function () {
       valid().then((response) => {
         userid = response['result']['id']
-
-        if (response['result']['id'] != undefined) {
+        
+        if (userid == profile_Id) {
           profile_check(response['result']['id'])
-        } else { //비로그인 유저는 페이지 접속 불가
+        } else { //비로그인 유저 및 프로필 주인이 아닌 사람은 페이지 접속 불가
           window.location.href = '/'
         }
+        
       });
     });
 
