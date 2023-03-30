@@ -179,10 +179,13 @@ def profile_get(userId):
 @app.route("/profile/delete", methods=["DELETE"])
 def profile_delete():
     userid_receive = request.form['id_give']
-    
-    db.profile.delete_one({'userid':userid_receive})
-    
+    #프로필 삭제하고 삭제된 user의 userid값 받아오기
+    find_profile = db.profile.find_one_and_delete({'userid':userid_receive})
+    profileId = find_profile['userid']
+    # 해당 프로필의 방명록 게시글들도 같이 지워주기
+    db.comments.delete_many({'profileId':profileId})
     return jsonify({'msg':'프로필이 삭제되었습니다.'})
+
 
 
 @app.route("/profile/all", methods=["GET"])
