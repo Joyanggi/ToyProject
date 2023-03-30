@@ -161,6 +161,14 @@
       .header:hover{
         cursor:pointer
       }
+      a{
+        text-decoration: none;
+        color: black;
+      }
+      a:hover{
+        cursor:pointer;
+        color:black
+      }
     </style>
     <script>
       let writer_Id;
@@ -465,10 +473,10 @@
         <p><i class="fa-solid fa-laptop-code"></i>&nbsp;&nbsp;{{field}}</p>
       </div>
       <div class="col-12">
-        <p><i class="fa-brands fa-github"></i>&nbsp;&nbsp;{{github}}</p>
+        <a href="{{github}}" target='_blank'><p><i class="fa-brands fa-github"></i>&nbsp;&nbsp;{{github}}</p></a>
       </div>
       <div class="col-12">
-        <p><i class="fa-brands fa-chrome"></i>&nbsp;&nbsp;{{blog}}</p>
+        <a href="{{blog}}" target='_blank'><p><i class="fa-brands fa-chrome"></i>&nbsp;&nbsp;{{blog}}</p></a>
       </div>
       <div class="col-12">
         <p><i class="fa-regular fa-newspaper"></i>&nbsp;&nbsp;{{mbti}}</p>
