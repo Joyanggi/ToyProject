@@ -163,7 +163,8 @@ def profile_check():
 @app.route("/profile/<userId>", methods=["GET"])
 def profile_get(userId):
     profile_result = db.profile.find_one({'userid':userId})
-    # TODO - 방명록 가져오기
+    if (profile_result is None):
+        return render_template('index.html')
     return render_template('detail.html', 
                            profile_result=profile_result,
                            profileId=userId,
