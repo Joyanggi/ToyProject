@@ -58,13 +58,11 @@ def valid_user():
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
     
 @app.route('/signup')
-def signuppage():
-    # msg = request.args.get("msg")
+def signuppage(): 
     return render_template('signup.html')
 
 @app.route('/signin')
 def signinpage():
-    # msg = request.args.get("msg")
     return render_template('signin.html')
 
 @app.route('/signup', methods=['POST'])
@@ -72,14 +70,19 @@ def signup():
     id_receive = request.form['id_give']
     pw_receive = request.form['pw_give'] 
     
-    pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
     existUser = db.user.find_one({'id':id_receive})
     #아이디 여부 확인
     if existUser is not None:
         return({'result':'fail'})
     else:
+        pw_hash = hashlib.sha256(pw_receive.encode('utf-8')).hexdigest()
         db.user.insert_one({'id': id_receive, 'pw': pw_hash})
-    return jsonify({'result': 'success'})
+        payload = {
+            'id': id_receive,
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(seconds=3600)
+        }
+        token = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+        return jsonify({'result': 'success', 'token': token})
 
 
 @app.route('/signin', methods=['POST'])
