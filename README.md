@@ -7,8 +7,11 @@
 https://www.youtube.com/watch?v=Rij7n7SrLtM
 
 - 기술 스택
+
 프론트엔드 : HTML, CSS, javascript
+
 백엔드 : Python
+
 DB : MongoDB
 
 * 기능 설명
