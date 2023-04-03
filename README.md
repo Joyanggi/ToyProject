@@ -6,6 +6,9 @@
 유튜브 링크
 https://www.youtube.com/watch?v=Rij7n7SrLtM
 
+와이어 프레임 링크
+https://regular-toothbrush-ae8.notion.site/a3b7a43d3913451e8ec8b6e38514f831?v=8da1cdde95b04b548f7e9515ce223fb1
+
 - 기술 스택
 
 프론트엔드 : HTML, CSS, javascript
