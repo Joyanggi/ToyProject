@@ -61,7 +61,6 @@
     $(document).ready(function () {
       valid().then((response) => {
         userid = response['result']['id']
-        // console.log(userid)
 
         if (response['result']['id'] != undefined){
           profile_check(response['result']['id'])
