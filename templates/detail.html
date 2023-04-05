@@ -359,13 +359,13 @@
                                       "
                                     />
                                     <div class="col-12 userCommentArea">
-                                      <span id="commentId" style="display:none;">${commentId}</span>
                                       <p>${commentText}
                                       </p>
                                       <button
                                         type="button"
                                         class="btn btn-outline-danger"
-                                        onClick="delete_comment($(this).siblings(commentId).text())" style="float: right">
+                                        value=${commentId}
+                                        onClick="delete_comment(this.value)" style="float: right">
                                         <i class="fa-regular fa-trash-can"></i>
                                       </button>
                                     </div>
@@ -420,8 +420,7 @@
       }).then((result) => {
         if (result.isConfirmed) {
           let formData = new FormData();
-          let commentId = id.substring(0,24);
-          formData.append("commentId_give", commentId);
+          formData.append("commentId_give", id);
           fetch('/comment/delete', { method: "DELETE", body: formData }).then((res) => res.json())
             .then((data) => {
               Swal.fire({
