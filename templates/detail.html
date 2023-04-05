@@ -346,8 +346,7 @@
                                       <div class="row">
                                         <div class="col-2 userImgArea">
                                           <img src="${writerImage}"/>
-                                          </div>
-                                          <span id="commentId" style="display:none;">${commentId}</span>
+                                          </div> 
                                         <div class="col-10 userNameArea">${writerName}</div>
                                       </div>
                                     </div>
@@ -360,12 +359,13 @@
                                       "
                                     />
                                     <div class="col-12 userCommentArea">
+                                      <span id="commentId" style="display:none;">${commentId}</span>
                                       <p>${commentText}
                                       </p>
                                       <button
                                         type="button"
                                         class="btn btn-outline-danger"
-                                        onClick="delete_comment()" style="float: right">
+                                        onClick="delete_comment($(this).siblings(commentId).text())" style="float: right">
                                         <i class="fa-regular fa-trash-can"></i>
                                       </button>
                                     </div>
@@ -407,7 +407,7 @@
         });
     }
 
-    function delete_comment() {
+    function delete_comment(id) {
       Swal.fire({
         title: '정말로 삭제하시겠습니까?',
         text: "삭제하면 되돌릴 수 없어요!",
@@ -420,7 +420,7 @@
       }).then((result) => {
         if (result.isConfirmed) {
           let formData = new FormData();
-          let commentId = $('#commentId').text();
+          let commentId = id.substring(0,24);
           formData.append("commentId_give", commentId);
           fetch('/comment/delete', { method: "DELETE", body: formData }).then((res) => res.json())
             .then((data) => {

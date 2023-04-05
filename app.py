@@ -204,7 +204,6 @@ def comment_write():
         'writerId':writerId_receive,
         'commentText':commentText_receive
     }
-    print(doc)
     comment_write = db.comments.insert_one(doc)
     return jsonify({'result':'방명록이 등록되었습니다.'})
 
