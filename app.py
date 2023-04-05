@@ -187,13 +187,13 @@ def profile_delete():
     db.comments.delete_many({'profileId':profileId})
     return jsonify({'msg':'프로필이 삭제되었습니다.'})
 
-
-
+# 모든 프로필 조회
 @app.route("/profile/all", methods=["GET"])
 def profile_get_all():
     profile_data = list(db.profile.find({},{'_id':False}))
     return jsonify({'result':profile_data})
 
+# 방명록 작성
 @app.route("/comment/write", methods=["POST"])
 def comment_write():
     profileId_receive = request.form['profileId_give']
@@ -215,11 +215,7 @@ def comment_delete():
     
     return jsonify({'msg':'방명록이 삭제되었습니다.'})
 
-# @app.route("/comments/all", methods=["GET"])
-# def comments_get_all():
-#     comments_data = list(db.comments.find({},{'_id':False}))
-#     return jsonify({'result':comments_data})
-
+# 프로필 주인의 방명록 모두 조회
 @app.route("/comments/all/<profileId>", methods=["GET"])
 def comments_get_all(profileId):
     comments_data = list(db.comments.find({'profileId':profileId},{}))
@@ -297,11 +293,13 @@ def writerProfile_get(writerId):
     else:
         return jsonify({'result':'결과없음'})
 
+# 검색
 @app.route("/search", methods=["GET"])
 def search_Profile():
     search_keyword = request.args.get('searchKeyword')
     search_result = list(db.profile.find({ "name": { "$regex": search_keyword } },{'_id':False}))
     return jsonify({'result':search_result})
 
+# mac os 고려 5001 포트 사용
 if __name__ == '__main__':
     app.run('0.0.0.0', port=5001, debug=True)
