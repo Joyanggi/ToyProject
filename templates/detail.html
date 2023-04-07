@@ -232,6 +232,16 @@
       return is_exist;
     }
 
+    function call_url(buttod_id) {
+      let urlAddress = document.getElementById(buttod_id).getAttribute('data-value');
+      if (urlAddress === null || urlAddress === undefined || urlAddress === '') {
+        return;
+      } else {
+        let openNewWindow = window.open("about:blank");
+        openNewWindow.location.href = urlAddress;
+      }
+    }
+
     function delete_profile() {
       Swal.fire({
         title: '정말로 삭제하시겠습니까?',
@@ -488,11 +498,11 @@
       <p><i class="fa-solid fa-laptop-code"></i>&nbsp;&nbsp;{{field}}</p>
     </div>
     <div class="col-12">
-      <p><a href="{{github}}" target='_blank'><i class="fa-brands fa-github"></i>&nbsp;&nbsp;{{github}}&nbsp;&nbsp;<i
+      <p><a id="githubUrl" href="javascript:void(0);" onclick="call_url(this.id)" data-value="{{github}}"><i class="fa-brands fa-github"></i>&nbsp;&nbsp;{{github}}&nbsp;&nbsp;<i
             class="fa-solid fa-link"></i></a></p>
     </div>
     <div class="col-12">
-      <p><a href="{{blog}}" target='_blank'><i class="fa-brands fa-chrome"></i>&nbsp;&nbsp;{{blog}}&nbsp;&nbsp;<i
+      <p><a id="blogUrl" href="javascript:void(0);" onclick="call_url(this.id)" data-value="{{blog}}"><i class="fa-brands fa-chrome"></i>&nbsp;&nbsp;{{blog}}&nbsp;&nbsp;<i
             class="fa-solid fa-link"></i></a></p>
     </div>
     <div class="col-12">
